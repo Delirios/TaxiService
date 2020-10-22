@@ -8,6 +8,7 @@ namespace TaxiService.CarCatalog.Repositories
 {
     public interface ICarRepository
     {
-
+        Task<IEnumerable<Car>> GetCars(int categoryId);
+        Task<Car> GetCarById(int carId);
     }
 }
