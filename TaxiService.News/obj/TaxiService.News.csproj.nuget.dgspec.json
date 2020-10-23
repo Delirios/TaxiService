@@ -42,6 +42,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "CodeHollow.FeedReader": {
+              "target": "Package",
+              "version": "[1.2.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",

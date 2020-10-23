@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiService.Discount", "Tax
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiService.News", "TaxiService.News\TaxiService.News.csproj", "{4EE9B0AF-3EB8-41B3-B43A-5256FA777F97}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiService.CarCatalog", "TaxiService.EventCatalog\TaxiService.CarCatalog.csproj", "{19B1ECE2-A9D5-431A-9F65-B002BC76CB09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiService.CarCatalog", "TaxiService.CarCatalog\TaxiService.CarCatalog.csproj", "{19B1ECE2-A9D5-431A-9F65-B002BC76CB09}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiService.Order", "TaxiService.Order\TaxiService.Order.csproj", "{875E6BC0-0270-4AA7-A83E-D2E43EAA6DD4}"
 EndProject
