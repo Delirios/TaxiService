@@ -9,9 +9,10 @@ namespace TaxiService.News.Services
 {
     public class FeedReaderService : IFeedReaderService
     {
-        public async Task ReadNews(string url, Article article)
+        public async Task<IEnumerable<FeedItem>> ReadNewsAsync(string url)
         {
             var feed = await FeedReader.ReadAsync(url);
+            return feed.Items;
         }
     }
 }

@@ -57,3 +57,6 @@ C:\Git_project\TaxiService\TaxiService.News\bin\Debug\netcoreapp3.1\runtimes\win
 C:\Git_project\TaxiService\TaxiService.News\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Git_project\TaxiService\TaxiService.News\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Git_project\TaxiService\TaxiService.News\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Git_project\TaxiService\TaxiService.News\bin\Debug\netcoreapp3.1\CodeHollow.FeedReader.dll
+C:\Git_project\TaxiService\TaxiService.News\obj\Debug\netcoreapp3.1\TaxiService.News.csproj.CoreCompileInputs.cache
+C:\Git_project\TaxiService\TaxiService.News\obj\Debug\netcoreapp3.1\TaxiService.News.MvcApplicationPartsAssemblyInfo.cache

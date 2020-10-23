@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using TaxiService.CarCatalog.Models;
-
+using System;
 namespace TaxiService.CarCatalog.Repositories
 {
     public interface ICarRepository

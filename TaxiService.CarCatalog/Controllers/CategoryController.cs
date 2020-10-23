@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TaxiService.CarCatalog.DbContexts;
 using TaxiService.CarCatalog.Models;
 using TaxiService.CarCatalog.Repositories;
 
