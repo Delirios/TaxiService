@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v3.1": {
       "TaxiService.News/1.0.0": {
         "dependencies": {
+          "CodeHollow.FeedReader": "1.2.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.9",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.9",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
@@ -301,6 +302,17 @@
         },
         "compile": {
           "TaxiService.News.dll": {}
+        }
+      },
+      "CodeHollow.FeedReader/1.2.1": {
+        "runtime": {
+          "lib/netcoreapp2.1/CodeHollow.FeedReader.dll": {
+            "assemblyVersion": "1.2.1.0",
+            "fileVersion": "1.2.1.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp2.1/CodeHollow.FeedReader.dll": {}
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -3020,6 +3032,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "CodeHollow.FeedReader/1.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-srcYPMAfEWzwlGUESqpu+ktWTPekUiv9HHOTUIzDjcQHxVTr+bdHL8L4835PLetGNBs3Rp75xCOhVoQy99eXDQ==",
+      "path": "codehollow.feedreader/1.2.1",
+      "hashPath": "codehollow.feedreader.1.2.1.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TaxiService.News.Repositories;
 using TaxiService.News.Services;
 
 namespace TaxiService.News
@@ -26,6 +27,7 @@ namespace TaxiService.News
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IFeedReaderService, FeedReaderService>();
+            services.AddScoped<INewsRepository, NewsRepository>();
 
             services.AddControllers();
         }

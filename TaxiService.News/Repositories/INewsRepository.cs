@@ -1,11 +1,12 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using TaxiService.News.Models;
 
 namespace TaxiService.News.Repositories
 {
-    interface Interface
+    public interface INewsRepository
     {
+        Task<IEnumerable<Article>> GetNewsAsync();
     }
 }
