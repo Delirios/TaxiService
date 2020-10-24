@@ -13,6 +13,7 @@ namespace TaxiService.Discount.DbContexts
         {
         }
 
+        public DbSet<Coupon> Coupons { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
