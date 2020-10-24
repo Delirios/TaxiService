@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TaxiService.Discount.Models;
 
 namespace TaxiService.Discount.DbContexts
@@ -48,6 +44,14 @@ namespace TaxiService.Discount.DbContexts
                 CouponId = 4,
                 Code = "Fourth",
                 Amount = 400,
+                AlreadyUsed = false
+            });
+
+            modelBuilder.Entity<Coupon>().HasData(new Coupon
+            {
+                CouponId = 5,
+                Code = "Fifth",
+                Amount = 500,
                 AlreadyUsed = false
             });
         }
