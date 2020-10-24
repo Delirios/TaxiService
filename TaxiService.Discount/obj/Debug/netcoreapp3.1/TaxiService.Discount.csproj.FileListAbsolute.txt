@@ -33,8 +33,7 @@ C:\Git_project\TaxiService\TaxiService.Discount\bin\Debug\netcoreapp3.1\TaxiServ
 C:\Git_project\TaxiService\TaxiService.Discount\bin\Debug\netcoreapp3.1\TaxiService.Discount.runtimeconfig.dev.json
 C:\Git_project\TaxiService\TaxiService.Discount\bin\Debug\netcoreapp3.1\TaxiService.Discount.dll
 C:\Git_project\TaxiService\TaxiService.Discount\bin\Debug\netcoreapp3.1\TaxiService.Discount.pdb
-C:\Git_project\TaxiService\TaxiService.Discount\obj\Debug\netcoreapp3.1\TaxiService.Discount.csproj.CoreCompileInputs.cache
-C:\Git_project\TaxiService\TaxiService.Discount\obj\Debug\netcoreapp3.1\TaxiService.Discount.MvcApplicationPartsAssemblyInfo.cache
 C:\Git_project\TaxiService\TaxiService.Discount\obj\Debug\netcoreapp3.1\TaxiService.Discount.dll
 C:\Git_project\TaxiService\TaxiService.Discount\obj\Debug\netcoreapp3.1\TaxiService.Discount.pdb
 C:\Git_project\TaxiService\TaxiService.Discount\obj\Debug\netcoreapp3.1\TaxiService.Discount.genruntimeconfig.cache
+C:\Git_project\TaxiService\TaxiService.Discount\bin\Debug\netcoreapp3.1\libman.json
