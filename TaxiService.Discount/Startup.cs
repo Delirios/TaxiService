@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using TaxiService.Discount.DbContexts;
 using TaxiService.Discount.Repositories;
 
@@ -32,6 +33,11 @@ namespace TaxiService.Discount
 
             services.AddScoped<ICouponRepository, CouponRepository>();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Discount API", Version = "v1" });
+            });
+
             services.AddControllers();
         }
 
@@ -42,6 +48,13 @@ namespace TaxiService.Discount
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Discount API V1");
+            });
 
             app.UseRouting();
 

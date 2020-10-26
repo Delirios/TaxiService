@@ -32,8 +32,6 @@ C:\Git_project\TaxiService\TaxiService.Order\bin\Debug\netcoreapp3.1\Microsoft.E
 C:\Git_project\TaxiService\TaxiService.Order\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 C:\Git_project\TaxiService\TaxiService.Order\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Git_project\TaxiService\TaxiService.Order\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
-C:\Git_project\TaxiService\TaxiService.Order\obj\Debug\netcoreapp3.1\TaxiService.Order.csproj.CoreCompileInputs.cache
-C:\Git_project\TaxiService\TaxiService.Order\obj\Debug\netcoreapp3.1\TaxiService.Order.MvcApplicationPartsAssemblyInfo.cache
 C:\Git_project\TaxiService\TaxiService.Order\obj\Debug\netcoreapp3.1\TaxiService.Order.csproj.CopyComplete
 C:\Git_project\TaxiService\TaxiService.Order\obj\Debug\netcoreapp3.1\TaxiService.Order.dll
 C:\Git_project\TaxiService\TaxiService.Order\obj\Debug\netcoreapp3.1\TaxiService.Order.pdb

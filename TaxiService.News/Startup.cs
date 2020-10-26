@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using TaxiService.News.Repositories;
 using TaxiService.News.Services;
 
@@ -29,6 +30,11 @@ namespace TaxiService.News
             services.AddScoped<IFeedReaderService, FeedReaderService>();
             services.AddScoped<INewsRepository, NewsRepository>();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "News API", Version = "v1" });
+            });
+
             services.AddControllers();
         }
 
@@ -39,6 +45,13 @@ namespace TaxiService.News
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "News API V1");
+            });
 
             app.UseRouting();
 

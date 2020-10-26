@@ -57,5 +57,3 @@ C:\Git_project\TaxiService\TaxiService.Discount\bin\Debug\netcoreapp3.1\runtimes
 C:\Git_project\TaxiService\TaxiService.Discount\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Git_project\TaxiService\TaxiService.Discount\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Git_project\TaxiService\TaxiService.Discount\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Git_project\TaxiService\TaxiService.Discount\obj\Debug\netcoreapp3.1\TaxiService.Discount.csproj.CoreCompileInputs.cache
-C:\Git_project\TaxiService\TaxiService.Discount\obj\Debug\netcoreapp3.1\TaxiService.Discount.MvcApplicationPartsAssemblyInfo.cache

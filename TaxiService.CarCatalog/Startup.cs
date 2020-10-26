@@ -28,8 +28,6 @@ namespace TaxiService.CarCatalog
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICarRepository, CarRepository>();
 
-            services.AddCors();
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -52,8 +50,6 @@ namespace TaxiService.CarCatalog
             });
 
             app.UseRouting();
-
-            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseAuthorization();
 
