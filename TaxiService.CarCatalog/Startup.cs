@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using TaxiService.CarCatalog.DbContexts;
 using TaxiService.CarCatalog.Repositories;
 
@@ -27,7 +28,13 @@ namespace TaxiService.CarCatalog
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICarRepository, CarRepository>();
 
+            services.AddCors();
+
             services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CarCatalog API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,8 +44,16 @@ namespace TaxiService.CarCatalog
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CarCatalog API V1");
+            });
 
             app.UseRouting();
+
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseAuthorization();
 

@@ -17,6 +17,7 @@ namespace TaxiService.CarCatalog.Controllers
             _categoryRepository = categoryRepository;
         }
 
+        [HttpGet]
         public async Task<IEnumerable<Category>> GetCategories()
         {
             return await _categoryRepository.GetAllCategories();
