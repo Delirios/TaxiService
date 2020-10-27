@@ -1,0 +1,12 @@
+services:
+  taxiservice.carcatalog:
+    build:
+      context: C:\Git_project\TaxiService
+      dockerfile: TaxiService.CarCatalog/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: taxiservicecarcatalog
+    ports:
+    - published: 8000
+      target: 80
+version: '3.4'
