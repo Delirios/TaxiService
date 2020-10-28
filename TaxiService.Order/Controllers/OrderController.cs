@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaxiService.Order.Commands;
-using TaxiService.Order.Models;
 using TaxiService.Order.Queries;
-using TaxiService.Order.Repositories;
 
 namespace TaxiService.Order.Controllers
 {
@@ -16,11 +10,9 @@ namespace TaxiService.Order.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly IOrderRepository _orderRepository;
         private readonly IMediator _mediator;
-        public OrderController(IOrderRepository orderRepository, IMediator mediator)
+        public OrderController(IMediator mediator)
         {
-            _orderRepository = orderRepository;
             _mediator = mediator;
         }
         [HttpGet]
