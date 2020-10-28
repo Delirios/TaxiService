@@ -10,6 +10,8 @@ namespace TaxiService.Order.Models
 
         public string From {get;set;}
         public string To {get;set;}
+        public bool IsPerformed { get; set; }
+        public bool IsClosed { get; set; }
         
     }
 }

@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  taxiservice.carcatalog:
+    image: ${DOCKER_REGISTRY-}taxiservicecarcatalog
+    build:
+      context: .
+      dockerfile: TaxiService.CarCatalog/Dockerfile
+
+  taxiservice.discount:
+    image: ${DOCKER_REGISTRY-}taxiservicediscount
+    build:
+      context: .
+      dockerfile: TaxiService.Discount/Dockerfile
+
+
+  taxiservice.news:
+    image: ${DOCKER_REGISTRY-}taxiservicenews
+    build:
+      context: .
+      dockerfile: TaxiService.News/Dockerfile
+
+
+  taxiservice.order:
+    image: ${DOCKER_REGISTRY-}taxiserviceorder
+    build:
+      context: .
+      dockerfile: TaxiService.Order/Dockerfile
+

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RqPuSmvZnzJneT9HUKYRtzRxOGv6eo4JTWIhpUbHzM9nIMK1a0esiDOzi69UTlkIPkCFk4gi4EKLBpQ9XB58RQ==",
+  "dgSpecHash": "rS5pvDY2VpST/+CCn4lSfogQ2Omn6M7BC5D6EN1zbuDpwFweg7itHKZf7DHEP38vRyVSeZeC+vRwcOeMdUGSGw==",
   "success": true,
   "projectFilePath": "C:\\Git_project\\TaxiService\\TaxiService.Discount\\TaxiService.Discount.csproj",
   "expectedPackageFiles": [
@@ -36,6 +36,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\lushc\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\lushc\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",

@@ -61,6 +61,3 @@ C:\Git_project\TaxiService\TaxiService.Discount\bin\Debug\netcoreapp3.1\Microsof
 C:\Git_project\TaxiService\TaxiService.Discount\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 C:\Git_project\TaxiService\TaxiService.Discount\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Git_project\TaxiService\TaxiService.Discount\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Git_project\TaxiService\TaxiService.Discount\obj\Debug\netcoreapp3.1\TaxiService.Discount.csproj.CoreCompileInputs.cache
-C:\Git_project\TaxiService\TaxiService.Discount\obj\Debug\netcoreapp3.1\TaxiService.Discount.MvcApplicationPartsAssemblyInfo.cs
-C:\Git_project\TaxiService\TaxiService.Discount\obj\Debug\netcoreapp3.1\TaxiService.Discount.MvcApplicationPartsAssemblyInfo.cache

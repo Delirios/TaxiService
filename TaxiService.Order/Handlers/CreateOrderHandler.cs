@@ -26,7 +26,9 @@ namespace TaxiService.Order.Handlers
             var order = await _orderRepository.CreateOrder(new Reservation
             {
                 From = request.From,
-                To = request.To
+                To = request.To,
+                IsPerformed = false,
+                IsClosed = false       
             });
             return order;
         }
