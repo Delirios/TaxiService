@@ -1,4 +1,14 @@
 services:
+  envoygateway:
+    build:
+      context: C:\Git_project\TaxiService\Envoy
+    ports:
+    - published: 9901
+      target: 9901
+    - published: 10000
+      target: 10000
+    volumes:
+    - /c/Git_project/TaxiService/Envoy/envoy.yaml:/etc/envoy/envoy.yaml:rw
   taxiservice.carcatalog:
     build:
       context: C:\Git_project\TaxiService
@@ -7,6 +17,40 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
     image: taxiservicecarcatalog
     ports:
-    - published: 8000
+    - published: 8080
       target: 80
+    - target: 80
+  taxiservice.discount:
+    build:
+      context: C:\Git_project\TaxiService
+      dockerfile: TaxiService.Discount/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: taxiservicediscount
+    ports:
+    - published: 8081
+      target: 80
+    - target: 80
+  taxiservice.news:
+    build:
+      context: C:\Git_project\TaxiService
+      dockerfile: TaxiService.News/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: taxiservicenews
+    ports:
+    - published: 8082
+      target: 80
+    - target: 80
+  taxiservice.order:
+    build:
+      context: C:\Git_project\TaxiService
+      dockerfile: TaxiService.Order/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: taxiserviceorder
+    ports:
+    - published: 8083
+      target: 80
+    - target: 80
 version: '3.4'

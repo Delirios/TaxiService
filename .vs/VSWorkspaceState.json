@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\TaxiService.CarCatalog",
+    "\\TaxiService.Order"
   ],
-  "SelectedNode": "\\TaxiService.sln",
+  "SelectedNode": "\\docker-compose.yml",
   "PreviewInSolutionExplorer": false
 }

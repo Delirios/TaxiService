@@ -1,0 +1,121 @@
+admin:
+  access_log_path: /tmp/admin_access.log
+  address:
+    socket_address:
+      protocol: TCP
+      address: 0.0.0.0
+      port_value: 9901
+static_resources:
+  listeners:
+  - name: listener_0
+    address:
+      socket_address:
+        protocol: TCP
+        address: 0.0.0.0
+        port_value: 10000
+    filter_chains:
+    - filters:
+      - name: envoy.filters.network.http_connection_manager
+        typed_config:
+          "@type": type.googleapis.com/envoy.config.filter.network.http_connection_manager.v2.HttpConnectionManager
+          stat_prefix: ingress_http
+          route_config:
+            name: local_route
+            virtual_hosts:
+            - name: local_service
+              domains: ["*"]
+              routes:
+              # CarCatalog API
+              - match:
+                  prefix: "/category"
+                route:
+                  prefix_rewrite: "/category"
+                  cluster: category_service
+              - match:
+                  prefix: "/car"
+                route:
+                  prefix_rewrite: "/car"
+                  cluster: category_service
+              # Discount API
+              - match:
+                  prefix: "/discount"
+                route:
+                  prefix_rewrite: "/discount"
+                  cluster: discount_service
+              # News API
+              - match:
+                  prefix: "/news"
+                route:
+                  prefix_rewrite: "/news"
+                  cluster: news_service
+              # Order API
+              - match:
+                  prefix: "/order"
+                route:
+                  prefix_rewrite: "/order"
+                  cluster: order_service
+          http_filters:
+          - name: envoy.filters.http.router
+  clusters:
+  - name: category_service
+    connect_timeout: 0.25s
+    type: LOGICAL_DNS
+    # Comment out the following line to test on v6 networks
+    dns_lookup_family: V4_ONLY
+    lb_policy: ROUND_ROBIN
+    load_assignment:
+      cluster_name: category_service
+      endpoints:
+      - lb_endpoints:
+        - endpoint:
+            address:
+              socket_address:
+                address: taxiservice.carcatalog
+                port_value: 80
+  - name: discount_service
+    connect_timeout: 0.25s
+    type: LOGICAL_DNS
+    # Comment out the following line to test on v6 networks
+    dns_lookup_family: V4_ONLY
+    lb_policy: ROUND_ROBIN
+    load_assignment:
+      cluster_name: discount_service
+      endpoints:
+      - lb_endpoints:
+        - endpoint:
+            address:
+              socket_address:
+                address: taxiservice.discount
+                port_value: 80
+  - name: news_service
+    connect_timeout: 0.25s
+    type: LOGICAL_DNS
+    # Comment out the following line to test on v6 networks
+    dns_lookup_family: V4_ONLY
+    lb_policy: ROUND_ROBIN
+    load_assignment:
+      cluster_name: news_service
+      endpoints:
+      - lb_endpoints:
+        - endpoint:
+            address:
+              socket_address:
+                address: taxiservice.news
+                port_value: 80
+  - name: order_service
+    connect_timeout: 0.25s
+    type: LOGICAL_DNS
+    # Comment out the following line to test on v6 networks
+    dns_lookup_family: V4_ONLY
+    lb_policy: ROUND_ROBIN
+    load_assignment:
+      cluster_name: order_service
+      endpoints:
+      - lb_endpoints:
+        - endpoint:
+            address:
+              socket_address:
+                address: taxiservice.order
+                port_value: 80
+    
+  

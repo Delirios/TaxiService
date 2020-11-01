@@ -1,29 +1,46 @@
 version: '3.4'
 
 services:
+  envoygateway:
+    image: delirios22102/taxiserviceenvoy
+    build: Envoy/
+    ports:
+      - "9901:9901"
+      - "10000:10000"
+    volumes:
+      - ./Envoy/envoy.yaml:/etc/envoy/envoy.yaml
+
   taxiservice.carcatalog:
-    image: ${DOCKER_REGISTRY-}taxiservicecarcatalog
+    image: delirios22102/taxiservicecarcatalog
     build:
       context: .
       dockerfile: TaxiService.CarCatalog/Dockerfile
+    ports:
+      - "8080:80"
 
   taxiservice.discount:
-    image: ${DOCKER_REGISTRY-}taxiservicediscount
+    image: delirios22102/taxiservicediscount
     build:
       context: .
       dockerfile: TaxiService.Discount/Dockerfile
+    ports:
+      - "8081:80"
 
 
   taxiservice.news:
-    image: ${DOCKER_REGISTRY-}taxiservicenews
+    image: delirios22102/taxiservicenews
     build:
       context: .
       dockerfile: TaxiService.News/Dockerfile
+    ports:
+      - "8082:80"
 
 
   taxiservice.order:
-    image: ${DOCKER_REGISTRY-}taxiserviceorder
+    image: delirios22102/taxiserviceorder
     build:
       context: .
       dockerfile: TaxiService.Order/Dockerfile
+    ports:
+      - "8083:80"
 
