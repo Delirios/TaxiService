@@ -70,7 +70,7 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: taxiservice.carcatalog
+                address: taxiservice-carcatalog
                 port_value: 80
   - name: discount_service
     connect_timeout: 0.25s
@@ -85,7 +85,7 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: taxiservice.discount
+                address: taxiservice-discount
                 port_value: 80
   - name: news_service
     connect_timeout: 0.25s
@@ -100,7 +100,7 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: taxiservice.news
+                address: taxiservice-news
                 port_value: 80
   - name: order_service
     connect_timeout: 0.25s
@@ -115,7 +115,7 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: taxiservice.order
+                address: taxiservice-order
                 port_value: 80
     
   

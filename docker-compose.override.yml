@@ -1,29 +1,22 @@
 version: '3.4'
 
 services:
-  taxiservice.carcatalog:
+  taxiservice-carcatalog:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
 
-  taxiservice.discount:
+
+  taxiservice-discount:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
 
 
-  taxiservice.news:
+  taxiservice-news:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
 
 
-  taxiservice.order:
+  taxiservice-order:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
 
