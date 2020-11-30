@@ -28,7 +28,10 @@ namespace TaxiService.CarCatalog
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICarRepository, CarRepository>();
 
+            services.AddCors();
+
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CarCatalog API", Version = "v1" });
@@ -50,6 +53,8 @@ namespace TaxiService.CarCatalog
             });
 
             app.UseRouting();
+
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseAuthorization();
 

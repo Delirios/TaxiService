@@ -30,12 +30,14 @@ namespace TaxiService.News
             services.AddScoped<IFeedReaderService, FeedReaderService>();
             services.AddScoped<INewsRepository, NewsRepository>();
 
+            services.AddCors();
+
+            services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "News API", Version = "v1" });
             });
-
-            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +56,8 @@ namespace TaxiService.News
             });
 
             app.UseRouting();
+
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseAuthorization();
 
