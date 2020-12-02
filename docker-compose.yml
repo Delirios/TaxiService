@@ -8,6 +8,8 @@ services:
       dockerfile: TaxiService.CarCatalog/Dockerfile
     ports:
       - "8080:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
   taxiservice-discount:
     image: taxiservicecontainerregistry.azurecr.io/taxiservicediscount
@@ -16,6 +18,8 @@ services:
       dockerfile: TaxiService.Discount/Dockerfile
     ports:
       - "8081:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
   taxiservice-news:
     image: taxiservicecontainerregistry.azurecr.io/taxiservicenews
@@ -32,4 +36,6 @@ services:
       dockerfile: TaxiService.Order/Dockerfile
     ports:
       - "8083:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
