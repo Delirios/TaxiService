@@ -1,7 +1,9 @@
 .main {
   background-color: coral;
+  padding-top: 10px;
 }
 .news {
   background-color: blue;
-  height: 100vh;
+  padding-top: 10px;
+  padding-bottom: 5%;
 }
