@@ -1,17 +1,12 @@
+import TaxiService from "../taxi-service/TaxiService";
+
 export default class NewsService {
   _apiBase = "http://localhost:8082";
 
-  async getResource(url) {
-    const res = await fetch(`${this._apiBase}${url}`);
-
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url} , received ${res.status}`);
-    }
-    return await res.json();
-  }
+  taxiService = new TaxiService(this._apiBase);
 
   async getNews() {
-    const news = await this.getResource(`/news`);
+    const news = await this.taxiService.getResource(`/news`);
     return news;
   }
 }
