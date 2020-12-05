@@ -1,4 +1,4 @@
-export default class NewsApi {
+export default class NewsService {
   _apiBase = "http://localhost:8082";
 
   async getResource(url) {
@@ -11,7 +11,7 @@ export default class NewsApi {
   }
 
   async getNews() {
-    const res = await this.getResource(`/news`);
-    return res.results;
+    const news = await this.getResource(`/news`);
+    return news;
   }
 }
