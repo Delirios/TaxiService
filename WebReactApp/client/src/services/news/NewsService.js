@@ -5,7 +5,7 @@ export default class NewsService {
 
   taxiService = new TaxiService(this._apiBase);
 
-  async getNews() {
+  getNews = async() => {
     const news = await this.taxiService.getResource(`/news`);
     return news;
   }

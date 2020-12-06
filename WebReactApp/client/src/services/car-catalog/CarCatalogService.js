@@ -5,9 +5,8 @@ export default class CarCatalogService {
 
   taxiService = new TaxiService(this._apiBase);
 
-  async getCategories() {
+  getCategories = async () => {
     const categories = await this.taxiService.getResource(`/category`);
-    console.log(categories);
     return categories;
-  }
+  };
 }
