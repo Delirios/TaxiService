@@ -9,6 +9,7 @@ const News = (props) => {
     return (
       <a
         href={link}
+        // eslint-disable-next-line react/jsx-no-target-blank
         target="_blank"
         className="list-group-item list-group-item-action flex-column align-items-start"
         key={articleId}
