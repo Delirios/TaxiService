@@ -1,6 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+
+import TaxiService from "./services/taxi-service/TaxiService";
+import { TaxiServiceProvider } from "./client/components/taxi-service-context/TaxiServiceContext";
 import App from "./client/pages/app/App";
 
+import store from "./client/redux/store";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const taxiService = new TaxiService();
+
+ReactDOM.render(
+  <Provider store={store}>
+    <TaxiServiceProvider value={taxiService}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </TaxiServiceProvider>
+  </Provider>,
+  document.getElementById("root")
+);
