@@ -1,5 +1,0 @@
-
-import './AboutPage.css';
-
-
-

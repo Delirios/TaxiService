@@ -1,11 +1,7 @@
 import React from "react";
-import NewsService from "../../../services/news/NewsService";
-import WithData from "../hoc-helpers/WithData";
 
-const NewsItem = (props) => {
-  const { data } = props;
-
-const items = data?.map(({ articleId, title, link }) => {
+const NewsItem = ({newsItem}) => {
+  const { link, title, articleId } = newsItem;
     return (
       <a
         href={link}
@@ -25,8 +21,5 @@ const items = data?.map(({ articleId, title, link }) => {
         <small>Donec id elit non mi porta.</small>
       </a>
     );
-  });
-  return items;
-};
-
+  }
 export default NewsItem;

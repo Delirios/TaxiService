@@ -1,34 +1,44 @@
-import React from "react";
-import NewsService from "../../../services/news/NewsService";
-import WithData from "../hoc-helpers/WithData";
+import React,{ Component } from "react";
+import NewsItem from "../news-item/NewsItem";
+import { connect } from "react-redux";
+import WithTaxiService from "../hoc-helpers/WithTaxiService";
+import { newsLoaded } from "../../redux/actions/news";
+import compose from "../../../services/utils/compose";
 
-const News = (props) => {
-  const { data } = props;
+class News extends Component {
+  componentDidMount = async () => {
+    const { taxiService } = this.props;
+    let data = await taxiService.getNews();
+    console.log(data);
 
-  const items = data?.map(({ articleId, title, link }) => {
+    this.props.newsLoaded(data);
+  };
+
+  render() {
+    const { news } = this.props;
     return (
-      <a
-        href={link}
-        // eslint-disable-next-line react/jsx-no-target-blank
-        target="_blank"
-        className="list-group-item list-group-item-action flex-column align-items-start"
-        key={articleId}
-      >
-        <div className="d-flex w-100 justify-content-between">
-          <h4 className="mb-1">{title}</h4>
-          <small>3 days ago</small>
-        </div>
-        <p className="mb-2">
-          Donec id elit non mi porta gravida at eget metus. Maecenas sed diam
-          eget risus varius blandit.
-        </p>
-        <small>Donec id elit non mi porta.</small>
-      </a>
+      <div className="list-group">
+        {news.map((newsItem) => {
+          return (
+            <div key={newsItem.articleId}>
+              <NewsItem newsItem={newsItem}></NewsItem>
+            </div>
+          );
+        })}
+      </div>
     );
-  });
-  return <div className="list-group">{items}</div>;
+  }
+}
+
+const mapStateToProprs = ({ news }) => {
+  return { news };
 };
 
-const { getNews } = new NewsService();
+const mapDispatchToProps = {
+  newsLoaded,
+};
 
-export default WithData(News, getNews);
+export default compose(
+  WithTaxiService(),
+  connect(mapStateToProprs, mapDispatchToProps)
+)(News);

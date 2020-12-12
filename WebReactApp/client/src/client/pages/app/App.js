@@ -6,6 +6,7 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import News from "../../components/news/News";
 import WithTaxiService from "../../components/hoc-helpers/WithTaxiService";
+import AboutPage from "../about/AboutPage";
 
 const App = ({taxiService}) => {
   taxiService.getNews().then((data) =>{
@@ -22,6 +23,7 @@ const App = ({taxiService}) => {
         <Switch>
           <Route path="/home" component={HomePage}></Route>
           <Route path="/news" component={News}></Route>
+          <Route path="/about" component={AboutPage}></Route>
         </Switch>
         <Footer />
       </BrowserRouter>

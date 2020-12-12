@@ -10,7 +10,7 @@ export default class TaxiService {
 
   getNews = async () => {
     const apiBase = "http://localhost:8082";
-    const news = await this.getResource(apiBase,`/news`);
+    const news = await this.getResource(apiBase,`/news`)
     return news;
   };
 

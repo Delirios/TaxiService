@@ -1,7 +1,5 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import CarCatalogService from "../../../services/car-catalog/CarCatalogService";
-import WithData from "../hoc-helpers/WithData";
 
 const Category = (props) => {
   const { data } = props;
@@ -30,6 +28,4 @@ const Category = (props) => {
   );
 };
 
-const { getCategories } = new CarCatalogService();
-
-export default WithData(Category, getCategories);
+export default Category;
