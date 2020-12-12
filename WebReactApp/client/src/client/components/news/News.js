@@ -1,4 +1,4 @@
-import React,{ Component } from "react";
+import React, { Component } from "react";
 import NewsItem from "../news-item/NewsItem";
 import { connect } from "react-redux";
 import WithTaxiService from "../hoc-helpers/WithTaxiService";
@@ -18,7 +18,7 @@ class News extends Component {
     const { news } = this.props;
     return (
       <div className="list-group">
-        {news.map((newsItem) => {
+        {news?.map((newsItem) => {
           return (
             <div key={newsItem.articleId}>
               <NewsItem newsItem={newsItem}></NewsItem>

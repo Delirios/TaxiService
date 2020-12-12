@@ -4,5 +4,11 @@ const newsLoaded = (newNews) => {
     payload: newNews,
   };
 };
+const categoriesLoaded = (newCategories) => {
+  return {
+    type: "CATEGORIES_LOADED",
+    payload: newCategories,
+  };
+};
 
-export { newsLoaded };
+export { newsLoaded, categoriesLoaded };
