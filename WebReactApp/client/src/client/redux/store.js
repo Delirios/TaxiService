@@ -1,8 +1,7 @@
-import InputGroupWithExtras from "react-bootstrap/esm/InputGroup";
 import {createStore} from "redux";
-import reducer from "./reducers/reducer";
+import rootReducer from './rootReducer'
 
 
-const store = createStore(reducer);
+const store = createStore(rootReducer);
 
 export default store;

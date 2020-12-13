@@ -7,6 +7,7 @@ import compose from "../../../services/utils/compose";
 import { Spinner } from "react-bootstrap";
 
 const News = ({ news }) => {
+  console.log(news )
   return (
     <div className="list-group">
       {news?.map((newsItem) => {
@@ -27,7 +28,6 @@ class NewsContainer extends Component {
 
   render() {
     const { news, loading } = this.props;
-
     if (loading) {
       return <Spinner />;
     }
@@ -36,7 +36,7 @@ class NewsContainer extends Component {
   }
 }
 
-const mapStateToProprs = ({ news, loading }) => {
+const mapStateToProps = ({newsReducer:{ news, loading }}) => {
   return { news, loading };
 };
 
@@ -48,5 +48,5 @@ const mapDispatchToProps = (dispatch, { taxiService }) => {
 
 export default compose(
   WithTaxiService(),
-  connect(mapStateToProprs, mapDispatchToProps)
+  connect(mapStateToProps, mapDispatchToProps)
 )(NewsContainer);

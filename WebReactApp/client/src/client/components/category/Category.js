@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Carousel } from "react-bootstrap";
 import { connect } from "react-redux";
-import { fetchCategories } from "../../redux/actions/news";
+import {  fetchCategories } from "../../redux/actions/news";
 
 import compose from "../../../services/utils/compose";
 import WithTaxiService from "../hoc-helpers/WithTaxiService";
@@ -40,7 +40,7 @@ class CategoryComponent extends Component {
     return <Category items={items} />;
   }
 }
-const mapStateToProprs = ({ categories }) => {
+const mapStateToProprs = ({categoriesReducer:{ categories }}) => {
   return { categories };
 };
 
