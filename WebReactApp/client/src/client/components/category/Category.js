@@ -1,18 +1,22 @@
 import React, { Component } from "react";
 import { Carousel } from "react-bootstrap";
 import { connect } from "react-redux";
-import { categoriesLoaded } from "../../redux/actions/news";
+import { fetchCategories } from "../../redux/actions/news";
 
 import compose from "../../../services/utils/compose";
 import WithTaxiService from "../hoc-helpers/WithTaxiService";
 
-class Category extends Component {
-  componentDidMount = async () => {
-    const { taxiService } = this.props;
-    let data = await taxiService.getCategories();
-    console.log(data);
+const Category = ({ items }) => {
+  return (
+    <section className="jumbotron text-center">
+      <Carousel>{items}</Carousel>
+    </section>
+  );
+};
 
-    this.props.categoriesLoaded(data);
+class CategoryComponent extends Component {
+  componentDidMount = async () => {
+    this.props.fetchCategories();
   };
 
   render() {
@@ -33,22 +37,20 @@ class Category extends Component {
         </Carousel.Item>
       );
     });
-    return (
-      <section className="jumbotron text-center">
-        <Carousel>{items}</Carousel>
-      </section>
-    );
+    return <Category items={items} />;
   }
 }
 const mapStateToProprs = ({ categories }) => {
   return { categories };
 };
 
-const mapDispatchToProps = {
-  categoriesLoaded,
+const mapDispatchToProps = (dispatch, { taxiService }) => {
+  return {
+    fetchCategories: fetchCategories(dispatch, taxiService),
+  };
 };
 
 export default compose(
   WithTaxiService(),
   connect(mapStateToProprs, mapDispatchToProps)
-)(Category);
+)(CategoryComponent);

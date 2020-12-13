@@ -2,43 +2,51 @@ import React, { Component } from "react";
 import NewsItem from "../news-item/NewsItem";
 import { connect } from "react-redux";
 import WithTaxiService from "../hoc-helpers/WithTaxiService";
-import { newsLoaded } from "../../redux/actions/news";
+import { fetchNews } from "../../redux/actions/news";
 import compose from "../../../services/utils/compose";
+import { Spinner } from "react-bootstrap";
 
-class News extends Component {
-  componentDidMount = async () => {
-    const { taxiService } = this.props;
-    let data = await taxiService.getNews();
-    console.log(data);
+const News = ({ news }) => {
+  return (
+    <div className="list-group">
+      {news?.map((newsItem) => {
+        return (
+          <div key={newsItem.articleId}>
+            <NewsItem newsItem={newsItem}></NewsItem>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
-    this.props.newsLoaded(data);
-  };
+class NewsContainer extends Component {
+  componentDidMount() {
+    this.props.fetchNews();
+  }
 
   render() {
-    const { news } = this.props;
-    return (
-      <div className="list-group">
-        {news?.map((newsItem) => {
-          return (
-            <div key={newsItem.articleId}>
-              <NewsItem newsItem={newsItem}></NewsItem>
-            </div>
-          );
-        })}
-      </div>
-    );
+    const { news, loading } = this.props;
+
+    if (loading) {
+      return <Spinner />;
+    }
+
+    return <News news={news} />;
   }
 }
 
-const mapStateToProprs = ({ news }) => {
-  return { news };
+const mapStateToProprs = ({ news, loading }) => {
+  return { news, loading };
 };
 
-const mapDispatchToProps = {
-  newsLoaded,
+const mapDispatchToProps = (dispatch, { taxiService }) => {
+  return {
+    fetchNews: fetchNews(dispatch, taxiService),
+  };
 };
 
 export default compose(
   WithTaxiService(),
   connect(mapStateToProprs, mapDispatchToProps)
-)(News);
+)(NewsContainer);

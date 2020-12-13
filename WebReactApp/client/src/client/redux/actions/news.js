@@ -1,14 +1,36 @@
 const newsLoaded = (newNews) => {
   return {
-    type: "NEWS_LOADED",
+    type: "FETCH_NEWS_SUCCESS",
     payload: newNews,
   };
 };
+
+const newsRequested = () => {
+  return {
+    type: "FETCH_NEWS_REQUEST",
+  };
+};
+const categoriesRequested = () => {
+  return {
+    type: "FETCH_CATEGORIES_REQUEST",
+  };
+};
+
 const categoriesLoaded = (newCategories) => {
   return {
-    type: "CATEGORIES_LOADED",
+    type: "FETCH_CATEGORIES_SUCCESS",
     payload: newCategories,
   };
 };
 
-export { newsLoaded, categoriesLoaded };
+const fetchNews = (dispatch, taxiService) => () => {
+  dispatch(newsRequested());
+  taxiService.getNews().then((data) => dispatch(newsLoaded(data)));
+};
+
+const fetchCategories = (dispatch, taxiService) => () => {
+  dispatch(categoriesRequested());
+  taxiService.getCategories().then((data) => dispatch(categoriesLoaded(data)));
+};
+
+export { fetchNews, categoriesLoaded,fetchCategories };
