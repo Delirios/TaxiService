@@ -10,7 +10,6 @@ import App from "./client/pages/app/App";
 import store from "./client/redux/store";
 
 const taxiService = new TaxiService();
-
 ReactDOM.render(
   <Provider store={store}>
     <TaxiServiceProvider value={taxiService}>

@@ -5,9 +5,10 @@ import WithTaxiService from "../hoc-helpers/WithTaxiService";
 import { fetchNews } from "../../redux/actions/news";
 import compose from "../../../services/utils/compose";
 import { Spinner } from "react-bootstrap";
+import { bindActionCreators } from "redux";
 
 const News = ({ news }) => {
-  console.log(news )
+  console.log(news);
   return (
     <div className="list-group">
       {news?.map((newsItem) => {
@@ -36,17 +37,16 @@ class NewsContainer extends Component {
   }
 }
 
-const mapStateToProps = ({newsReducer:{ news, loading }}) => {
+const mapStateToProps = ({ newsReducer: { news, loading } }) => {
   return { news, loading };
 };
 
 const mapDispatchToProps = (dispatch, { taxiService }) => {
-  return {
-    fetchNews: fetchNews(dispatch, taxiService),
-  };
+  return bindActionCreators({
+    fetchNews: fetchNews(taxiService),
+  },dispatch);
 };
 
 export default compose(
   WithTaxiService(),
-  connect(mapStateToProps, mapDispatchToProps)
-)(NewsContainer);
+  connect(mapStateToProps, mapDispatchToProps))(NewsContainer);

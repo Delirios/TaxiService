@@ -1,91 +1,109 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { Field, reduxForm } from "redux-form";
+
+import WithTaxiService from "../hoc-helpers/WithTaxiService";
+import compose from "../../../services/utils/compose";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { createOrders } from "../../redux/actions/news";
 
 import "./Order.css";
 
 class Order extends Component {
-
-constructor(props){
-    super(props);
-    this.state = {
-        from: '',
-        to: ''
+  renderField(field) {
+    return (
+      <Fragment>
+        <label>{field.label}</label>
+        <input
+          type="text"
+          className="form-control"
+          placeholder={field.placeholder}
+          {...field.input}
+        />
+        <div className="text-danger">
+          {field.meta.touched ? field.meta.error : ""}
+        </div>
+      </Fragment>
+    );
+  }
+  /*/
+  createMethod = async () => {
+    
+    const newOrder = {
+      from: "first",
+      to: "second",
+      isPerformed: true,
+      isClosed: true,
+    };
+    try {
+      const response = await fetch("http://localhost:59637/Order", {
+        method: "POST", // или 'PUT'
+        body: JSON.stringify(newOrder), // данные могут быть 'строкой' или {объектом}!
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
+      console.log("Успех:", JSON.stringify(json));
+    } catch (error) {
+      console.error("Ошибка:", error);
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
-}
+  };
+  /*/
+  getResource = async () => {
+    const res = await fetch(`http://localhost:59637/Order`);
+    if (!res.ok) {
+      throw new Error(`Could not fetch  , received ${res.status}`);
+    }
+    return await res.json();
+  };
 
-handleSubmit(event){
-    event.preventDefault();
-    console.log('Form Submitted');
-    this.setState({})
-}
+  onSubmit(values) {
+    console.log(values);
 
-
+    console.log(this.props)
+    
+    this.props.createOrders(values);
+  }
   render() {
+    const { handleSubmit } = this.props;
+
     return (
       <section className="order">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div className="form-row">
-            <div className="form-group col-md-6">
-              <label for="inputEmail4">FirstName</label>
-              <input
-                type="text"
-                className="form-control"
-                id="inputEmail4"
-                placeholder="FirstName"
+            <div className="form-group col-md-6 ">
+              <Field
+                placeholder="First Name"
+                label="First Name"
+                name="firstName"
+                component={this.renderField}
               />
             </div>
             <div className="form-group col-md-6">
-              <label for="inputPassword4">LastName</label>
-              <input
-                type="text"
-                className="form-control"
-                id="inputPassword4"
-                placeholder="LastName"
+              <Field
+                placeholder="Last Name"
+                label="Last Name"
+                name="lastName"
+                component={this.renderField}
               />
             </div>
           </div>
           <div className="form-group">
-            <label for="inputAddress">From</label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputAddress"
+            <Field
               placeholder="From"
+              label="From"
+              name="from"
+              component={this.renderField}
             />
           </div>
           <div className="form-group">
-            <label for="inputAddress2">To</label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputAddress2"
+            <Field
               placeholder="To"
+              label="To"
+              name="to"
+              component={this.renderField}
             />
-          </div>
-          <div className="form-row">
-            <div className="form-group col-md-6">
-              <label for="inputCity">City</label>
-              <input type="text" className="form-control" id="inputCity" />
-            </div>
-            <div className="form-group col-md-4">
-              <label for="inputState">Categories</label>
-              <select id="inputState" className="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="gridCheck"
-              />
-              <label className="form-check-label" for="gridCheck">
-                Check me out
-              </label>
-            </div>
           </div>
           <button type="submit" className="btn btn-primary">
             Замовити
@@ -96,4 +114,35 @@ handleSubmit(event){
   }
 }
 
-export default Order;
+const validate = (values) => {
+  const errors = {};
+
+  if (!values.firstName) {
+    errors.firstName = "Enter your name";
+  }
+
+  return errors;
+};
+
+const mapStateToProps = ({ categoriesReducer: { orders } }) => {
+  return { orders };
+};
+const mapDispatchToProps = (dispatch, { taxiService }) => {
+  const newOrder = {
+    from: "first",
+    to: "second",
+    isPerformed: true,
+    isClosed: true,
+  };
+  return bindActionCreators(
+    {
+      createOrders: createOrders(taxiService),
+    },
+    dispatch
+  );
+};
+export default reduxForm({
+  validate,
+  form: "OrderForm",
+})(compose(
+  WithTaxiService(),connect(mapStateToProps, mapDispatchToProps))(Order));

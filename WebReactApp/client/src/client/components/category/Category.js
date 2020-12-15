@@ -16,6 +16,7 @@ const Category = ({ items }) => {
 
 class CategoryComponent extends Component {
   componentDidMount = async () => {
+    console.log(this.props)
     this.props.fetchCategories();
   };
 
