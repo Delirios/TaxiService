@@ -6,6 +6,7 @@ import compose from "../../../services/utils/compose";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { createOrders } from "../../redux/actions/news";
+import { Link } from "react-router-dom";
 
 import "./Order.css";
 
@@ -26,43 +27,10 @@ class Order extends Component {
       </Fragment>
     );
   }
-  /*/
-  createMethod = async () => {
-    
-    const newOrder = {
-      from: "first",
-      to: "second",
-      isPerformed: true,
-      isClosed: true,
-    };
-    try {
-      const response = await fetch("http://localhost:59637/Order", {
-        method: "POST", // или 'PUT'
-        body: JSON.stringify(newOrder), // данные могут быть 'строкой' или {объектом}!
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const json = await response.json();
-      console.log("Успех:", JSON.stringify(json));
-    } catch (error) {
-      console.error("Ошибка:", error);
-    }
-  };
-  /*/
-  getResource = async () => {
-    const res = await fetch(`http://localhost:59637/Order`);
-    if (!res.ok) {
-      throw new Error(`Could not fetch  , received ${res.status}`);
-    }
-    return await res.json();
-  };
 
   onSubmit(values) {
     console.log(values);
 
-    console.log(this.props)
-    
     this.props.createOrders(values);
   }
   render() {
@@ -71,6 +39,9 @@ class Order extends Component {
     return (
       <section className="order">
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+          <Link to="/home" className="btn btn-primary ">
+            Відмінити
+          </Link>
           <div className="form-row">
             <div className="form-group col-md-6 ">
               <Field
@@ -128,15 +99,9 @@ const mapStateToProps = ({ categoriesReducer: { orders } }) => {
   return { orders };
 };
 const mapDispatchToProps = (dispatch, { taxiService }) => {
-  const newOrder = {
-    from: "first",
-    to: "second",
-    isPerformed: true,
-    isClosed: true,
-  };
   return bindActionCreators(
     {
-      createOrders: createOrders(taxiService),
+      createOrders: (values) => dispatch(createOrders(taxiService, values)),
     },
     dispatch
   );
@@ -144,5 +109,9 @@ const mapDispatchToProps = (dispatch, { taxiService }) => {
 export default reduxForm({
   validate,
   form: "OrderForm",
-})(compose(
-  WithTaxiService(),connect(mapStateToProps, mapDispatchToProps))(Order));
+})(
+  compose(
+    WithTaxiService(),
+    connect(mapStateToProps, mapDispatchToProps)
+  )(Order)
+);

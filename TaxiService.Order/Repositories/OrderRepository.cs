@@ -38,7 +38,9 @@ namespace TaxiService.Order.Repositories
             var reservation = new Reservation
             {
                 From = order.From,
-                To = order.To
+                To = order.To,
+                FirstName = order.FirstName,
+                LastName = order.LastName
             };
             _orderDbContext.Reservations.Add(reservation);
             await _orderDbContext.SaveChangesAsync();

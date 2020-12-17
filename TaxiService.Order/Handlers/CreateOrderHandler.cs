@@ -27,8 +27,8 @@ namespace TaxiService.Order.Handlers
             {
                 From = request.From,
                 To = request.To,
-                IsPerformed = false,
-                IsClosed = false       
+                FirstName = request.FirstName,
+                LastName = request.LastName
             });
             return order;
         }

@@ -1,5 +1,3 @@
-import { createStore } from "redux";
-
 const newsLoaded = (newNews) => {
   return {
     type: "FETCH_NEWS_SUCCESS",
