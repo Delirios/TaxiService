@@ -1,0 +1,119 @@
+{
+  "Routes": [
+    //CarCatalogAPI
+    {
+      "DownstreamPathTemplate": "/category",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/category",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/car",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/car",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/car/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/car/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    //DiscountAPI
+    {
+      "DownstreamPathTemplate": "/discount/code/{code}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/discount/code/{code}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/discount/{couponId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/discount/{couponId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/discount/use/{couponId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/discount/use/{couponId}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    //NewsAPI
+    {
+      "DownstreamPathTemplate": "/news",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 8082
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/news",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    //OrderAPI
+    {
+      "DownstreamPathTemplate": "/order",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/order",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/order/{orderId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/order/{orderId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:8084"
+  }
+}  
