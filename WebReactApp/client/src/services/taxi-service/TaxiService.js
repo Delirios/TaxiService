@@ -19,19 +19,19 @@ export default class TaxiService {
   };
 
   createOrder = async (newOrder) => {
-    const apiBase = "http://localhost:59637";
+    const apiBase = "http://localhost:8084/gateway";
     const res = await this.createMethod(apiBase, `/Order`, newOrder);
     return res;
   };
 
   getNews = async () => {
-    const apiBase = "http://localhost:8082";
+    const apiBase = "http://localhost:8084/gateway";
     const news = await this.getResource(apiBase, `/news`);
     return news;
   };
 
   getCategories = async () => {
-    const apiBase = "http://localhost:8080";
+    const apiBase = "http://localhost:8084/gateway";
     const categories = await this.getResource(apiBase, `/category`);
     return categories;
   };
