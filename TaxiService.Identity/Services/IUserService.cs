@@ -6,8 +6,9 @@ using TaxiService.Identity.Models;
 
 namespace TaxiService.Identity.Services
 {
-    public interface ITokenBuilder
+    public interface IUserService
     {
-        Task<string> BuildToken(User user);
+        User Authenticate(string username, string password);
+        User Create(User user, string password);
     }
 }

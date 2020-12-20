@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TaxiService.Identity.Data;
+using TaxiService.Identity.Helpers;
 using TaxiService.Identity.Models;
 using TaxiService.Identity.Repositories;
 using TaxiService.Identity.Services;
@@ -20,35 +22,49 @@ namespace TaxiService.Identity.Controllers
     {
         private readonly UserDbContext _userDbContext;
         private readonly ITokenBuilder _tokenBuilder;
-        public LoginController(UserDbContext userDbContext, ITokenBuilder tokenBuilder)
+        private readonly IUserService _userService;
+
+        public LoginController(UserDbContext userDbContext, ITokenBuilder tokenBuilder, IUserService userService)
         {
             _userDbContext = userDbContext;
-            _tokenBuilder = tokenBuilder;               
+            _tokenBuilder = tokenBuilder;
+            _userService = userService;
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] User user)
         {
-            var dbUser = await _userDbContext
-                .Users
-                .SingleOrDefaultAsync(u => u.Username==user.Username);
+            var userResult = _userService.Authenticate(user.Username, user.Password);
 
-            if (dbUser == null)
+            if (userResult == null)
+                return BadRequest("Username or password is incorrect");
+
+            var token = await _tokenBuilder.BuildToken(userResult);
+
+            return Ok(new
             {
-                return NotFound("User not found.");
-            }
-
-            var isValid = dbUser.Password == user.Password;
-
-            if (!isValid)
-            {
-                return BadRequest("Could not authenticate user.");
-            }
-
-            var token = await _tokenBuilder.BuildToken(user.Username);
-
-            return Ok(token);
+                Id = userResult.UserId,
+                Username = userResult.Username,
+                FirstName = userResult.FirstName,
+                LastName = userResult.LastName,
+                Token = token
+            });
         }
+
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] User user)
+        { 
+            try
+            {
+                _userService.Create(user, user.Password);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         [HttpGet("verify")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]

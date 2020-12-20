@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -6,23 +7,38 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using TaxiService.Identity.Helpers;
+using TaxiService.Identity.Models;
 
 namespace TaxiService.Identity.Services
 {
     public class TokenBuilder : ITokenBuilder
     {
-        public async Task<string> BuildToken(string UserId)
-        {
-            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("placeholder-key-that-is-long-enough-for-sha256"));
-            var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
-            var claims = new Claim[]
-            {
-                new Claim(JwtRegisteredClaimNames.NameId, UserId),
-            };
-            var jwt = new JwtSecurityToken(claims: claims, signingCredentials: signingCredentials);
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+        private readonly AppSettings _appSettings;
 
-            return encodedJwt;
+        public TokenBuilder(IOptions<AppSettings> appSettings)
+        {
+            _appSettings = appSettings.Value;
+        }
+
+
+        public async Task<string> BuildToken(User user)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.UserId)
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+
+            return tokenString;
         }
     }
 }
