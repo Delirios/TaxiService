@@ -1,11 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TaxiService.Identity.Data;
 using TaxiService.Identity.Models;
 using TaxiService.Identity.Repositories;
+using TaxiService.Identity.Services;
 
 namespace TaxiService.Identity.Controllers
 {
@@ -13,33 +18,61 @@ namespace TaxiService.Identity.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        [HttpPost]
-        public IActionResult Login(User user)
+        private readonly UserDbContext _userDbContext;
+        private readonly ITokenBuilder _tokenBuilder;
+        public LoginController(UserDbContext userDbContext, ITokenBuilder tokenBuilder)
         {
-            User u = new UserRepository().GetUser(user.UserId);
-            if (u == null)
-            {
-                return NotFound("The user was not found.");
-            }
-
-            bool credentials = u.Password.Equals(user.Password);
-
-            if (!credentials)
-            {
-                return Forbid("The username/password combination was wrong.");
-            }
-            return Ok(TokenManager.GenerateToken(user.UserId));
+            _userDbContext = userDbContext;
+            _tokenBuilder = tokenBuilder;               
         }
-        [HttpGet]
-        public IActionResult Validate(string token, string userId)
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] User user)
         {
-            bool exists = new UserRepository().GetUser(userId) != null;
-            if (!exists)
-                return NotFound("The user was not found.");
-            string tokenUserId = TokenManager.ValidateToken(token);
-            if (userId.Equals(tokenUserId))
-                return Ok();
-            return BadRequest();
+            var dbUser = await _userDbContext
+                .Users
+                .SingleOrDefaultAsync(u => u.Username==user.Username);
+
+            if (dbUser == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            var isValid = dbUser.Password == user.Password;
+
+            if (!isValid)
+            {
+                return BadRequest("Could not authenticate user.");
+            }
+
+            var token = await _tokenBuilder.BuildToken(user.Username);
+
+            return Ok(token);
+        }
+
+        [HttpGet("verify")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> VerifyToken()
+        {
+            var userName = User
+                .Claims
+                .SingleOrDefault();
+
+            if (userName == null)
+            {
+                return Unauthorized();
+            }
+
+            var userExists = await _userDbContext
+                .Users
+                .AnyAsync(u => u.Username == userName.Value);
+
+            if (!userExists)
+            {
+                return Unauthorized();
+            }
+
+            return NoContent();
         }
     }
 }
