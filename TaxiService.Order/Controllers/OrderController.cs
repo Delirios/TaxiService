@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaxiService.Order.Commands;
 using TaxiService.Order.Queries;
@@ -15,6 +16,9 @@ namespace TaxiService.Order.Controllers
         {
             _mediator = mediator;
         }
+
+
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllOrders()
         {
@@ -22,7 +26,7 @@ namespace TaxiService.Order.Controllers
             var result = await _mediator.Send(query);
             return Ok(result);              
         }
-
+        [Authorize]
         [HttpGet("{orderId}")]
         public async Task<IActionResult> GetOrderById(int orderId)
         {
@@ -31,12 +35,12 @@ namespace TaxiService.Order.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpPost("")]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderCommand command)
         {
             var result = await _mediator.Send(command);
-            return CreatedAtAction("GetOrderById", new { orderId = result.OrderId}, result);
-           
+            return CreatedAtAction("GetOrderById", new { orderId = result.OrderId}, result);         
         }
     }
 }

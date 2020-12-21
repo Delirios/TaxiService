@@ -48,7 +48,11 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/discount/code/{code}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityKey",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/discount/{couponId}",
@@ -60,7 +64,11 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/discount/{couponId}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityKey",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/discount/use/{couponId}",
@@ -72,7 +80,11 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/discount/use/{couponId}",
-      "UpstreamHttpMethod": [ "PUT" ]
+      "UpstreamHttpMethod": [ "PUT" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityKey",
+        "AllowedScopes": []
+      }
     },
     //NewsAPI
     {
@@ -98,7 +110,11 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/order",
-      "UpstreamHttpMethod": [ "GET", "POST" ]
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityKey",
+        "AllowedScopes": []
+      }
     },
     {
       "DownstreamPathTemplate": "/order/{orderId}",
@@ -110,10 +126,41 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/order/{orderId}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityKey",
+        "AllowedScopes": []
+      }
+    },
+    //IdentityAPI
+    {
+      "DownstreamPathTemplate": "/login/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 8084
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/login/login",
+      "UpstreamHttpMethod": [ "POST" ],
+      "RouteIsCaseSensitive": false
+    },
+    {
+      "DownstreamPathTemplate": "/login/register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 8084
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/login/register",
+      "UpstreamHttpMethod": [ "POST" ],
+      "RouteIsCaseSensitive": false
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:8084"
+    "BaseUrl": "http://localhost:8085"
   }
 }  
