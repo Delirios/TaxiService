@@ -20,6 +20,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
 
+  taxiservice-identity:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
 
   taxiservice-apigateway:
     environment:

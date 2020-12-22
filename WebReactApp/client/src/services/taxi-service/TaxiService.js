@@ -1,38 +1,63 @@
 export default class TaxiService {
-  getResource = async (apiBase, url) => {
-    const res = await fetch(`${apiBase}${url}`);
+  _apiBase = "http://localhost:8085/gateway";
+  getResource = async (url) => {
+    const res = await fetch(`${this._apiBase}${url}`);
     if (!res.ok) {
       throw new Error(`Could not fetch ${url} , received ${res.status}`);
     }
     return await res.json();
   };
 
-  createMethod = async (apiBase, url, newOrder) => {
-    const response = await fetch(`${apiBase}${url}`, {
-      method: "POST", 
-      body: JSON.stringify(newOrder), 
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  createMethod = async (url, newOrder) => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newOrder),
+    };
+    const response = await fetch(`${this._apiBase}${url}`, requestOptions);
     return response.json();
   };
 
-  createOrder = async (newOrder) => {
-    const apiBase = "http://localhost:8084/gateway";
-    const res = await this.createMethod(apiBase, `/Order`, newOrder);
-    return res;
-  };
-
   getNews = async () => {
-    const apiBase = "http://localhost:8084/gateway";
-    const news = await this.getResource(apiBase, `/news`);
+    const news = await this.getResource(`/news`);
     return news;
   };
 
   getCategories = async () => {
-    const apiBase = "http://localhost:8084/gateway";
-    const categories = await this.getResource(apiBase, `/category`);
+    const categories = await this.getResource(`/category`);
     return categories;
   };
+
+  createOrder = async (newOrder) => {
+    const res = await this.createMethod(`/Order`, newOrder);
+    return res;
+  };
+
+  registerUser = async (user) => {
+    const res = await this.registerUser(`/login/register`, user);
+    return res;
+  };
+
+  login = async (username, password) => {
+    var res = await this.createMethod(`/login/login`, {
+      username,
+      password,
+    }).then((user) => {
+      // login successful if there's a jwt token in the response
+      if (user && user.token) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+
+        //localStorage.setItem("user", JSON.stringify(user));
+        console.log(user);
+        
+      
+      }
+      return res;
+    });
+  };
+  logout() {
+    // remove user from local storage to log user out
+    //localStorage.removeItem('user');
+    console.log("logout");
+  }
 }

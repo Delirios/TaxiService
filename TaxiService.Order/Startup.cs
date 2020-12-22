@@ -57,9 +57,12 @@ namespace TaxiService.Order
 
             app.UseRouting();
 
-            app.UseCors(builder => builder.AllowAnyOrigin()
-                                          .AllowAnyMethod()
-                                          .AllowAnyHeader());
+            app.UseCors(builder => builder
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .SetIsOriginAllowed(_ => true)
+                .AllowCredentials()
+            );
 
             app.UseAuthorization();
 

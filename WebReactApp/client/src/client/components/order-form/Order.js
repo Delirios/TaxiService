@@ -9,6 +9,7 @@ import { createOrders } from "../../redux/actions/news";
 import { Link } from "react-router-dom";
 
 import "./Order.css";
+import TaxiService from "../../../services/taxi-service/TaxiService";
 
 class Order extends Component {
   renderField(field) {
@@ -30,7 +31,9 @@ class Order extends Component {
 
   onSubmit(values) {
     console.log(values);
-
+    const taxiService = new TaxiService();
+    taxiService.login("Test","TestPassword");
+    
     this.props.createOrders(values);
   }
   render() {

@@ -32,6 +32,7 @@ namespace TaxiService.APIGateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
@@ -66,6 +67,12 @@ namespace TaxiService.APIGateway
                 app.UseDeveloperExceptionPage();
             }
             app.UseRouting();
+            app.UseCors(builder => builder
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .SetIsOriginAllowed(_ => true)
+               .AllowCredentials()
+           );
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

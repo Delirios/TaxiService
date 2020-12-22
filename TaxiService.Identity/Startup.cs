@@ -86,10 +86,12 @@ namespace TaxiService.Identity
 
             app.UseRouting();
 
-            app.UseCors(builder => builder.SetIsOriginAllowed(origin => true)
-                                          .AllowAnyMethod()
-                                          .AllowAnyHeader()
-                                          .AllowCredentials());
+            app.UseCors(builder => builder
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .SetIsOriginAllowed(_ => true)
+                .AllowCredentials()
+            );
 
             app.UseAuthentication();
 

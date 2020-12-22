@@ -39,21 +39,36 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
+  taxiservice-identity:
+    image: taxiservicecontainerregistry.azurecr.io/taxiserviceidentity
+    build:
+      context: .
+      dockerfile: TaxiService.Identity/Dockerfile
+    ports:
+      - "8084:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
   taxiservice-apigateway:
     image: taxiservicecontainerregistry.azurecr.io/taxiserviceapigateway
     build:
       context: .
       dockerfile: TaxiService.APIGateway/Dockerfile
     ports:
-      - "8084:80"
+      - "8085:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
     links:
       - taxiservice-carcatalog
       - taxiservice-discount
       - taxiservice-news
       - taxiservice-order
+      - taxiservice-identity
     depends_on:
       - taxiservice-carcatalog
       - taxiservice-discount
       - taxiservice-news
       - taxiservice-order
+      - taxiservice-identity
 
