@@ -44,6 +44,20 @@ const Header = () => {
             </li>
           </ul>
         </div>
+        <div  id="navbarColor01">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link to="/login" className="nav-link">
+                Login
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/register" className="nav-link">
+                Register
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );

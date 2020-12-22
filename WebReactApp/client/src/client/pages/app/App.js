@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import News from "../../components/news/News";
 import WithTaxiService from "../../components/hoc-helpers/WithTaxiService";
 import OrderPage from "../order/OrderPage";
+import LoginPage from "../login/LoginPage";
 
 const App = ({ taxiService }) => {
   taxiService.getNews().then((data) => {
@@ -23,7 +24,8 @@ const App = ({ taxiService }) => {
         <Switch>
           <Route path="/home" component={HomePage}></Route>
           <Route path="/news" component={News}></Route>
-          <Route path="/order" component ={OrderPage}></Route>
+          <Route path="/order" component ={OrderPage}></Route>        
+          <Route path="/login" component ={LoginPage}></Route>
         </Switch>
         <Footer />
       </BrowserRouter>

@@ -5,7 +5,7 @@ import WithTaxiService from "../hoc-helpers/WithTaxiService";
 import compose from "../../../services/utils/compose";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { createOrders } from "../../redux/actions/news";
+import { createOrders } from "../../redux/actions/order";
 import { Link } from "react-router-dom";
 
 import "./Order.css";
