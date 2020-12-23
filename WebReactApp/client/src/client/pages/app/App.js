@@ -8,6 +8,7 @@ import News from "../../components/news/News";
 import WithTaxiService from "../../components/hoc-helpers/WithTaxiService";
 import OrderPage from "../order/OrderPage";
 import LoginPage from "../login/LoginPage";
+import RegisterPage from "../registration/RegisterPage";
 
 const App = ({ taxiService }) => {
   taxiService.getNews().then((data) => {
@@ -25,7 +26,8 @@ const App = ({ taxiService }) => {
           <Route path="/home" component={HomePage}></Route>
           <Route path="/news" component={News}></Route>
           <Route path="/order" component ={OrderPage}></Route>        
-          <Route path="/login" component ={LoginPage}></Route>
+          <Route path="/login" component ={LoginPage}></Route>      
+          <Route path="/register" component ={RegisterPage}></Route>
         </Switch>
         <Footer />
       </BrowserRouter>

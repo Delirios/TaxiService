@@ -1,39 +1,23 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-
-import WithTaxiService from "../hoc-helpers/WithTaxiService";
-import compose from "../../../services/utils/compose";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { createOrders } from "../../redux/actions/order";
 import { Link } from "react-router-dom";
 
+import WithTaxiService from "../hoc-helpers/WithTaxiService";
+import compose from "../../../services/utils/compose";
+import renderField from "../../../services/utils/renderField";
+
 import "./Order.css";
 import TaxiService from "../../../services/taxi-service/TaxiService";
 
 class Order extends Component {
-  renderField(field) {
-    return (
-      <Fragment>
-        <label>{field.label}</label>
-        <input
-          type="text"
-          className="form-control"
-          placeholder={field.placeholder}
-          {...field.input}
-        />
-        <div className="text-danger">
-          {field.meta.touched ? field.meta.error : ""}
-        </div>
-      </Fragment>
-    );
-  }
-
   onSubmit(values) {
     console.log(values);
     const taxiService = new TaxiService();
-    taxiService.login("Test","TestPassword");
-    
+    taxiService.login("Test", "TestPassword");
+
     this.props.createOrders(values);
   }
   render() {
@@ -51,7 +35,7 @@ class Order extends Component {
                 placeholder="First Name"
                 label="First Name"
                 name="firstName"
-                component={this.renderField}
+                component={renderField}
               />
             </div>
             <div className="form-group col-md-6">
@@ -59,7 +43,7 @@ class Order extends Component {
                 placeholder="Last Name"
                 label="Last Name"
                 name="lastName"
-                component={this.renderField}
+                component={renderField}
               />
             </div>
           </div>
@@ -68,7 +52,7 @@ class Order extends Component {
               placeholder="From"
               label="From"
               name="from"
-              component={this.renderField}
+              component={renderField}
             />
           </div>
           <div className="form-group">
@@ -76,7 +60,7 @@ class Order extends Component {
               placeholder="To"
               label="To"
               name="to"
-              component={this.renderField}
+              component={renderField}
             />
           </div>
           <button type="submit" className="btn btn-primary">

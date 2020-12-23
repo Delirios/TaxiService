@@ -1,51 +1,100 @@
+import { Component } from "react";
+import { Link } from "react-router-dom";
+import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { login } from "../../redux/actions/user";
+
+import WithTaxiService from "../../components/hoc-helpers/WithTaxiService";
+import renderField from "../../../services/utils/renderField";
+import compose from "../../../services/utils/compose";
+
 import "./LoginPage.css";
 
-const LoginPage = () => {
-  return (
-    <div className="container-fluid">
-    <div className="sidenav">
-      <div className="login-main-text">
-        <h2>
-          Application
-          <br/>
-            Login Page <br />
-          </h2>
-          <p>Login or register from here to access.</p>
-      </div>
-      <div className="login-main">
-        <div className="col-md-6 col-sm-12">
-          <div className="login-form">
-            <form>
-              <div className="form-group">
-                <label>User Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="User Name"
-                />
+class LoginPage extends Component {
+  onSubmit(values) {
+    console.log(values);
+    this.props.login(values);
+  }
+
+  render() {
+    const { handleSubmit } = this.props;
+
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <form
+              className="box"
+              onSubmit={handleSubmit(this.onSubmit.bind(this))}
+            >
+              <h1>Login</h1>
+              <p className="text-muted">
+                Please enter your login and password!
+              </p>
+              <Field
+                placeholder="Username"
+                type="text"
+                name="username"
+                label="Login"
+                component={renderField}
+              />
+              <Field
+                placeholder="Password"
+                type="password"
+                name="password"
+                label="Password"
+                component={renderField}
+              />
+              <Link className="forgot text-muted" to="/ForgotPassword">
+                Forgot password?
+              </Link>
+              <input type="submit" name="" value="Login" href="#" />
+              <div className="col-md-12">
+                <ul className="social-network social-circle">
+                  <li>
+                    <Link to="#" className="icoFacebook" title="Facebook">
+                      <i className="fa fa-facebook-f"></i>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="#" className="icoTwitter" title="Twitter">
+                      <i className="fa fa-twitter"></i>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="#" className="icoGoogle" title="Google +">
+                      <i className="fa fa-google-plus"></i>
+                    </Link>
+                  </li>
+                </ul>
               </div>
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Password"
-                />
-              </div>
-              <button type="submit" className="btn btn-black">
-                Login
-              </button>
-              <button type="submit" className="btn btn-secondary">
-                Register
-              </button>
             </form>
           </div>
         </div>
       </div>
-    </div>
-    </div>
+    );
+  }
+}
+
+const mapStateToProps = ({ categoriesReducer: { user } }) => {
+  return { user };
+};
+const mapDispatchToProps = (dispatch, { taxiService }) => {
+  return bindActionCreators(
+    {
+      login: (username, password) =>
+        dispatch(login(taxiService, username, password)),
+    },
+    dispatch
   );
 };
 
-
-export default LoginPage;
+export default reduxForm({
+  form: "LoginForm",
+})(
+  compose(
+    WithTaxiService(),
+    connect(mapStateToProps, mapDispatchToProps)
+  )(LoginPage)
+);

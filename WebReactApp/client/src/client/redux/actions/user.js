@@ -14,9 +14,10 @@ const successLogin = (request) => {
   };
 };
 
-const login = (taxiService, username, password) => () => (dispatch) => {
-  dispatch(requestLogin({ username }));
-  taxiService.login(username, password).then(data => {
+const login = (taxiService, values) => () => (dispatch) => {
+  const {username} = values
+  dispatch(requestLogin(username));
+  taxiService.login(values).then(data => {
     dispatch(successLogin(data));
     history.push("/");
   });

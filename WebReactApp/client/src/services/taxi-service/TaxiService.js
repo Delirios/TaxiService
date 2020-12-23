@@ -38,7 +38,8 @@ export default class TaxiService {
     return res;
   };
 
-  login = async (username, password) => {
+  login = async (values) => {
+    const {username, password} = values;
     var res = await this.createMethod(`/login/login`, {
       username,
       password,
