@@ -44,7 +44,7 @@ class CategoryComponent extends Component {
     return <Category items={items} />;
   }
 }
-const mapStateToProprs = ({ categoriesReducer: { categories } }) => {
+const mapStateToProprs = ({ categoriesReducer: { categories }}) => {
   return { categories };
 };
 

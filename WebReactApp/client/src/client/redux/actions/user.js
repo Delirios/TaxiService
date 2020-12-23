@@ -13,6 +13,12 @@ const successLogin = (request) => {
     payload: request,
   };
 };
+const successLogout = () => {
+  return {
+    type: "USERS_LOGOUT"
+  };
+};
+
 
 const login = (taxiService, values) => () => (dispatch) => {
   const {username} = values
@@ -23,9 +29,12 @@ const login = (taxiService, values) => () => (dispatch) => {
   });
 };
 
-const logout=(taxiService) =>{
+const logout=(taxiService) =>() => (dispatch) =>{
+  dispatch(successLogout());
     taxiService.logout();
-    return { type: "USERS_LOGOUT" };
 }
 
-export { login ,logout};
+const register=()=>{
+
+}
+export { login ,logout,register};

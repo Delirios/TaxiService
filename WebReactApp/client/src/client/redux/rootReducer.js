@@ -1,13 +1,14 @@
-import {combineReducers} from 'redux';
-import newsReducer from './reducers/newsReducer';
-import categoriesReducer from './reducers/categoriesReducer'
-import {reducer as formReducer} from 'redux-form';
+import { combineReducers } from "redux";
+import newsReducer from "./reducers/newsReducer";
+import categoriesReducer from "./reducers/categoriesReducer";
+import userReducer from "./reducers/userReducer";
+import { reducer as formReducer } from "redux-form";
 
 const rootReducer = combineReducers({
-    newsReducer,
-    categoriesReducer,
-    form: formReducer
-})
-
+  newsReducer,
+  categoriesReducer,
+  userReducer,
+  form: formReducer,
+});
 
 export default rootReducer;

@@ -1,3 +1,5 @@
+
+
 export default class TaxiService {
   _apiBase = "http://localhost:8085/gateway";
   getResource = async (url) => {
@@ -39,26 +41,38 @@ export default class TaxiService {
   };
 
   login = async (values) => {
-    const {username, password} = values;
+    const { username, password } = values;
     var res = await this.createMethod(`/login/login`, {
       username,
       password,
-    }).then((user) => {
-      // login successful if there's a jwt token in the response
-      if (user && user.token) {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
+    })
+      .then((user) => {
+        if (user && user.token) {
 
-        localStorage.setItem("user", JSON.stringify(user));
-        console.log(user);
-        
-      
-      }
-      return res;
-    });
+          localStorage.setItem("user", JSON.stringify(user));
+          console.log(user);
+        }
+        return res;
+      });
   };
   logout() {
-    // remove user from local storage to log user out
-    //localStorage.removeItem('user');
+    localStorage.removeItem('user');
     console.log("logout");
   }
+
+  handleResponse= (response) => {
+    console.log(response)
+    return response.text().then(text => {
+      const data = text && JSON.parse(text);
+      if (!response.ok) {
+        if (response.status === 401) {
+          this.logout();
+          this.window.location.reload(true);
+        }
+
+        const error = response.statusText;
+        return Promise.reject(error);
+      }
+    })
+  };
 }

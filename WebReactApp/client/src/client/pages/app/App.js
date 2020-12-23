@@ -1,14 +1,18 @@
+import { Router, Route, Switch } from "react-router-dom";
+import { history } from "../../../services/utils/history";
+
 import React from "react";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import HomePage from "../home/HomePage";
-import "./App.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import News from "../../components/news/News";
 import WithTaxiService from "../../components/hoc-helpers/WithTaxiService";
 import OrderPage from "../order/OrderPage";
 import LoginPage from "../login/LoginPage";
 import RegisterPage from "../registration/RegisterPage";
+import PrivateRoute from "../../helpers/PrivateRoute";
+
+import "./App.css";
 
 const App = ({ taxiService }) => {
   taxiService.getNews().then((data) => {
@@ -20,17 +24,17 @@ const App = ({ taxiService }) => {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router history={history}>
         <Header />
         <Switch>
-          <Route path="/home" component={HomePage}></Route>
-          <Route path="/news" component={News}></Route>
-          <Route path="/order" component ={OrderPage}></Route>        
-          <Route path="/login" component ={LoginPage}></Route>      
-          <Route path="/register" component ={RegisterPage}></Route>
+          <PrivateRoute exact path="/" component={HomePage} />
+          <Route path="/news" component={News} />
+          <Route path="/order" component={OrderPage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/register" component={RegisterPage} />
         </Switch>
         <Footer />
-      </BrowserRouter>
+      </Router>
     </div>
   );
 };

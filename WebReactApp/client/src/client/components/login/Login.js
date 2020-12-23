@@ -12,9 +12,30 @@ import compose from "../../../services/utils/compose";
 import "./Login.css";
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+
+    // reset login status
+    //this.props.dispatch(logout());
+
+    this.state = {
+      username: "",
+      password: "",
+      submitted: false,
+    };
+  }
+
   onSubmit(values) {
-    console.log(values);
-    this.props.login(values);
+    //console.log(values);
+    const { username, password } = values;    
+    const {login} = this.props
+
+    this.setState({ username: username, password: password, submitted: true });
+
+    //console.log(username, password)
+    if (username && password) {
+      login(values);
+    }
   }
 
   render() {
@@ -77,14 +98,14 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = ({ categoriesReducer: { user } }) => {
-  return { user };
+const mapStateToProps = ({ userReducer: { loggedIn } }) => {
+  return { loggedIn };
 };
+
 const mapDispatchToProps = (dispatch, { taxiService }) => {
   return bindActionCreators(
     {
-      login: (username, password) =>
-        dispatch(login(taxiService, username, password)),
+      login: (values) => dispatch(login(taxiService, values)),
     },
     dispatch
   );
