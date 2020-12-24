@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   taxiservice-carcatalog:
-    image: taxiservicecontainerregistry.azurecr.io/taxiservicecarcatalog
+    image: lushchevskyi/taxi-service.carcatalog
     build:
       context: .
       dockerfile: TaxiService.CarCatalog/Dockerfile
@@ -11,8 +11,9 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
+
   taxiservice-discount:
-    image: taxiservicecontainerregistry.azurecr.io/taxiservicediscount
+    image: lushchevskyi/taxi-service.discount
     build:
       context: .
       dockerfile: TaxiService.Discount/Dockerfile
@@ -21,8 +22,9 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
+
   taxiservice-news:
-    image: taxiservicecontainerregistry.azurecr.io/taxiservicenews
+    image: lushchevskyi/taxi-service.news
     build:
       context: .
       dockerfile: TaxiService.News/Dockerfile
@@ -30,7 +32,7 @@ services:
       - "8082:80"
 
   taxiservice-order:
-    image: taxiservicecontainerregistry.azurecr.io/taxiserviceorder
+    image: lushchevskyi/taxi-service.order
     build:
       context: .
       dockerfile: TaxiService.Order/Dockerfile
@@ -39,8 +41,9 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
+
   taxiservice-identity:
-    image: taxiservicecontainerregistry.azurecr.io/taxiserviceidentity
+    image: lushchevskyi/taxi-service.identity
     build:
       context: .
       dockerfile: TaxiService.Identity/Dockerfile
@@ -49,8 +52,9 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
+
   taxiservice-apigateway:
-    image: taxiservicecontainerregistry.azurecr.io/taxiserviceapigateway
+    image: lushchevskyi/taxi-service.apigateway
     build:
       context: .
       dockerfile: TaxiService.APIGateway/Dockerfile
@@ -58,6 +62,7 @@ services:
       - "8085:80"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
 
     links:
       - taxiservice-carcatalog
