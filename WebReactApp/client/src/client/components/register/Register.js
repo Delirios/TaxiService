@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { register } from "../../redux/actions/user";
 
-
 import WithTaxiService from "../hoc-helpers/WithTaxiService";
 import renderField from "../../../services/utils/renderField";
 import compose from "../../../services/utils/compose";
@@ -100,24 +99,23 @@ class Register extends Component {
 }
 
 const mapStateToProps = ({ userReducer: { user } }) => {
-    return { user };
-  };
-  const mapDispatchToProps = (dispatch, { taxiService }) => {
-    return bindActionCreators(
-      {
-        login: (username, password) =>
-          dispatch(register(taxiService, username, password)),
-      },
-      dispatch
-    );
-  };
-
+  return { user };
+};
+const mapDispatchToProps = (dispatch, { taxiService }) => {
+  return bindActionCreators(
+    {
+      register: (username, password) =>
+        dispatch(register(taxiService, username, password)),
+    },
+    dispatch
+  );
+};
 
 export default reduxForm({
   form: "RegisterForm",
 })(
-    compose(
-      WithTaxiService(),
-      connect(mapStateToProps, mapDispatchToProps)
-    )(Register)
-  );
+  compose(
+    WithTaxiService(),
+    connect(mapStateToProps, mapDispatchToProps)
+  )(Register)
+);

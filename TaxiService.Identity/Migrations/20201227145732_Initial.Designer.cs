@@ -10,7 +10,7 @@ using TaxiService.Identity.Data;
 namespace TaxiService.Identity.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20201220190814_Initial")]
+    [Migration("20201227145732_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,12 @@ namespace TaxiService.Identity.Migrations
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
@@ -50,13 +56,13 @@ namespace TaxiService.Identity.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "154d0ccc-599c-456a-b311-5d298bc13b5b",
+                            UserId = "8ba4152b-da60-46d7-82ae-b02ab5b5f82a",
                             Password = "Pass1",
                             Username = "Test1"
                         },
                         new
                         {
-                            UserId = "72f406a3-bd18-47bf-8170-d96b5b3949f6",
+                            UserId = "4629ff13-eb76-4a9c-b85d-f196bbe2cf2a",
                             Password = "Pass2",
                             Username = "Test2"
                         });
@@ -77,12 +83,12 @@ namespace TaxiService.Identity.Migrations
                     b.HasData(
                         new
                         {
-                            RoleId = "eb04f571-d6a6-49b0-9194-61f268f91d72",
+                            RoleId = "bee8a8c8-1142-40b3-8a35-0beebdcf8154",
                             Role = "Admin"
                         },
                         new
                         {
-                            RoleId = "4a9906ca-9824-4ea0-8bdf-480489e55d59",
+                            RoleId = "ddfc8177-bb50-4327-a74f-d8c323929034",
                             Role = "User"
                         });
                 });

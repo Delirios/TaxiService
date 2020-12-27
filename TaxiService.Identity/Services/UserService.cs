@@ -50,6 +50,7 @@ namespace TaxiService.Identity.Services
             user.UserId = Guid.NewGuid().ToString();
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
+            user.Role = "Admin";
 
             _userDbContext.Users.Add(user);
             _userDbContext.SaveChanges();

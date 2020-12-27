@@ -13,6 +13,8 @@ import RegisterPage from "../registration/RegisterPage";
 import PrivateRoute from "../../helpers/PrivateRoute";
 
 import "./App.css";
+import PricingPage from "../pricing/PricingPage";
+import AboutPage from "../about/AboutPage";
 
 const App = ({ taxiService }) => {
   taxiService.getNews().then((data) => {
@@ -22,16 +24,19 @@ const App = ({ taxiService }) => {
     console.log(data);
   });
 
+
   return (
     <div className="App">
       <Router history={history}>
         <Header />
         <Switch>
-          <PrivateRoute exact path="/" component={HomePage} />
+          <Route exact path="/" component={HomePage} />
           <Route path="/news" component={News} />
-          <Route path="/order" component={OrderPage} />
+          <PrivateRoute exact path="/order" component={OrderPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
+          <Route path ="/pricing" component={PricingPage}/>       
+          <Route path ="/about" component={AboutPage}/>
         </Switch>
         <Footer />
       </Router>

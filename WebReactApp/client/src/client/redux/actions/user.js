@@ -8,7 +8,9 @@ const requestLogin = (request) => {
   };
 };
 const successLogin = (request) => {
+  console.log(request)
   return {
+    
     type: "USERS_LOGIN_SUCCESS",
     payload: request,
   };
@@ -24,6 +26,7 @@ const login = (taxiService, values) => () => (dispatch) => {
   const {username} = values
   dispatch(requestLogin(username));
   taxiService.login(values).then(data => {
+    console.log(data)
     dispatch(successLogin(data));
     history.push("/");
   });

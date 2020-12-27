@@ -5,9 +5,9 @@ const orderCreated = (request) => {
   };
 };
 
-const createOrders = (taxiService, newOrder) => () => (dispatch) => {
+const createOrders = (taxiService, newOrder,user) => () => (dispatch) => {
   taxiService
-    .createOrder(newOrder)
+    .createOrder(newOrder,user)
     .then((data) => dispatch(orderCreated(data)));
 };
 

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaxiService.Order.Commands;
@@ -35,7 +36,7 @@ namespace TaxiService.Order.Controllers
             return Ok(result);
         }
 
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Roles = "Admin")]
         [HttpPost("")]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderCommand command)
         {

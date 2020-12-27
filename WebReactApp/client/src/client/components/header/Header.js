@@ -16,9 +16,10 @@ class Header extends Component {
   };
 
   renderLogin = () => {
-    const {loggedIn } = this.props;
-
+    const {loggedIn} = this.props;
+    console.log(this.props)
     if (!loggedIn) {
+      console.log(this.props)
       console.log("user null");
       return (
         <li className="nav-item">
@@ -30,6 +31,20 @@ class Header extends Component {
     }
     if (loggedIn) {
       console.log("user not null");
+      console.log(this.props.user)
+      if(this.props.user.role === "Admin")
+      {
+        return (
+          <li className="nav-item">
+            <Link onClick={this.onClick} to="/login" className="nav-link">
+              Admin
+            </Link>
+            <Link onClick={this.onClick} to="/login" className="nav-link">
+              Logout
+            </Link>
+          </li>
+        );
+      }
       return (
         <li className="nav-item">
           <Link onClick={this.onClick} to="/login" className="nav-link">
@@ -67,7 +82,7 @@ class Header extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/pricing/" className="nav-link">
+                <Link to="/pricing" className="nav-link">
                   Pricing
                 </Link>
               </li>

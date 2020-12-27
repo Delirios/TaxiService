@@ -1,7 +1,6 @@
-
-
 export default class TaxiService {
-  _apiBase = "http://localhost:8085/gateway";
+  //_apiBase = "http://34.89.120.234/gateway";
+  _apiBase = "http://localhost:55360/gateway";
   getResource = async (url) => {
     const res = await fetch(`${this._apiBase}${url}`);
     if (!res.ok) {
@@ -10,14 +9,19 @@ export default class TaxiService {
     return await res.json();
   };
 
-  createMethod = async (url, newOrder) => {
+  createMethod = async (url, body, token) => {
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newOrder),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
     };
     const response = await fetch(`${this._apiBase}${url}`, requestOptions);
-    return response.json();
+    const result = await response.json();
+    console.log(result);
+    return result;
   };
 
   getNews = async () => {
@@ -30,8 +34,18 @@ export default class TaxiService {
     return categories;
   };
 
-  createOrder = async (newOrder) => {
-    const res = await this.createMethod(`/Order`, newOrder);
+  createOrder = async (newOrder, user) => {
+    const { destinationAddresses, originAddresses, distance, price } = newOrder;
+    console.log(user);
+    const { userId, token } = user;
+    const body = {
+      userId,
+      originAddresses,
+      destinationAddresses,
+      distance,
+      price,
+    };
+    const res = await this.createMethod(`/Order`, body, token);
     return res;
   };
 
@@ -42,28 +56,25 @@ export default class TaxiService {
 
   login = async (values) => {
     const { username, password } = values;
-    var res = await this.createMethod(`/login/login`, {
-      username,
-      password,
-    })
-      .then((user) => {
-        if (user && user.token) {
-
-          localStorage.setItem("user", JSON.stringify(user));
-          console.log(user);
-        }
-        return res;
-      });
+    const body = { username, password };
+    var response = await this.createMethod(`/login/login`, body).then((user) => {
+      if (user && user.token) {
+        localStorage.setItem("user", JSON.stringify(user));
+        console.log(user);
+      }
+    });
+    var result = await response
+    console.log(result)
+    console.log(response)
   };
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
     console.log("logout");
   }
 
-  handleResponse= (response) => {
-    console.log(response)
-    return response.text().then(text => {
-      const data = text && JSON.parse(text);
+  handleResponse = (response) => {
+    console.log(response);
+    return response.text().then((text) => {
       if (!response.ok) {
         if (response.status === 401) {
           this.logout();
@@ -73,6 +84,6 @@ export default class TaxiService {
         const error = response.statusText;
         return Promise.reject(error);
       }
-    })
+    });
   };
 }

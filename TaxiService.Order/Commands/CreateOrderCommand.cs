@@ -9,11 +9,11 @@ namespace TaxiService.Order.Commands
 {
     public class CreateOrderCommand : IRequest<Reservation>
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string From { get; set; }
-
-        public string To { get; set; }
+        public string UserId { get; set; }
+        public string OriginAddresses { get; set; }
+        public string DestinationAddresses { get; set; }
+        public double Price { get; set; }
+        public double Distance { get; set; }
         //public bool IsPerformed { get; set; }
         //public bool IsClosed { get; set;}
     }

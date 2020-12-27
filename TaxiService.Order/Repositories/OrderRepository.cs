@@ -37,10 +37,11 @@ namespace TaxiService.Order.Repositories
         {
             var reservation = new Reservation
             {
-                From = order.From,
-                To = order.To,
-                FirstName = order.FirstName,
-                LastName = order.LastName
+                UserId = order.UserId,
+                OriginAddresses = order.OriginAddresses,
+                DestinationAddresses = order.DestinationAddresses,
+                Price = order.Price,
+                Distance = order.Distance
             };
             _orderDbContext.Reservations.Add(reservation);
             await _orderDbContext.SaveChangesAsync();

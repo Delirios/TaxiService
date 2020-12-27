@@ -6,8 +6,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "host.docker.internal",
-          "Port": 8080
+          "Host": "35.234.151.123",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/gateway/category",
@@ -18,8 +18,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "host.docker.internal",
-          "Port": 8080
+          "Host": "35.234.151.123",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/gateway/car",
@@ -30,8 +30,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "host.docker.internal",
-          "Port": 8080
+          "Host": "35.234.151.123",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/gateway/car/{id}",
@@ -105,8 +105,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "host.docker.internal",
-          "Port": 8083
+          "Host": "localhost",
+          "Port": 59637
         }
       ],
       "UpstreamPathTemplate": "/gateway/order",
@@ -121,8 +121,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "host.docker.internal",
-          "Port": 8083
+          "Host": "localhost",
+          "Port": 59637
         }
       ],
       "UpstreamPathTemplate": "/gateway/order/{orderId}",
@@ -138,8 +138,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "host.docker.internal",
-          "Port": 8084
+          "Host": "localhost",
+          "Port": 51096
         }
       ],
       "UpstreamPathTemplate": "/gateway/login/login",
@@ -151,8 +151,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "host.docker.internal",
-          "Port": 8084
+          "Host": "localhost",
+          "Port": 51096
         }
       ],
       "UpstreamPathTemplate": "/gateway/login/register",

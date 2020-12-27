@@ -43,10 +43,11 @@ namespace TaxiService.Identity.Controllers
 
             return Ok(new
             {
-                Id = userResult.UserId,
+                UserId = userResult.UserId,
                 Username = userResult.Username,
                 FirstName = userResult.FirstName,
                 LastName = userResult.LastName,
+                Role = userResult.Role,
                 Token = token
             });
         }

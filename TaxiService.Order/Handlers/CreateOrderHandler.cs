@@ -25,10 +25,12 @@ namespace TaxiService.Order.Handlers
 
             var order = await _orderRepository.CreateOrder(new Reservation
             {
-                From = request.From,
-                To = request.To,
-                FirstName = request.FirstName,
-                LastName = request.LastName
+                UserId = request.UserId,
+                OriginAddresses = request.OriginAddresses,
+                DestinationAddresses = request.DestinationAddresses,
+                Price = request.Price,
+                Distance = request.Distance
+
             });
             return order;
         }
