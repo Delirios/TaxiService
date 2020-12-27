@@ -6,9 +6,9 @@ import { fetchCategories } from "../../redux/actions/category";
 import compose from "../../../services/utils/compose";
 import WithTaxiService from "../hoc-helpers/WithTaxiService";
 
-import "./Category.css";
+import "./Carousel.css";
 
-const Category = ({ items }) => {
+const CustomCarousel = ({ items }) => {
   return (
     <section className="jumbotron text-center">
       <Carousel>{items}</Carousel>
@@ -16,7 +16,7 @@ const Category = ({ items }) => {
   );
 };
 
-class CategoryComponent extends Component {
+class CarouselComponent extends Component {
   componentDidMount = async () => {
     console.log(this.props);
     this.props.fetchCategories();
@@ -41,7 +41,7 @@ class CategoryComponent extends Component {
           </Carousel.Item>
       );
     });
-    return <Category items={items} />;
+    return <CustomCarousel items={items} />;
   }
 }
 const mapStateToProprs = ({ categoriesReducer: { categories }}) => {
@@ -57,4 +57,4 @@ const mapDispatchToProps = (dispatch, { taxiService }) => {
 export default compose(
   WithTaxiService(),
   connect(mapStateToProprs, mapDispatchToProps)
-)(CategoryComponent);
+)(CarouselComponent);

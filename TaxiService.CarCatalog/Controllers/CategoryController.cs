@@ -22,5 +22,6 @@ namespace TaxiService.CarCatalog.Controllers
         {
             return await _categoryRepository.GetAllCategories();
         }
+
     }
 }

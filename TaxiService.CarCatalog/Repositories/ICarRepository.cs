@@ -8,5 +8,6 @@ namespace TaxiService.CarCatalog.Repositories
     {
         Task<IEnumerable<Car>> GetCars(int categoryId);
         Task<Car> GetCarById(int carId);
+        Task AddCar(Car car);
     }
 }

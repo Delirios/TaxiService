@@ -73,9 +73,6 @@ class Order extends Component {
     //console.log(user);
     createOrders(this.state, user);
   }
-  handleChange({ target }) {
-    this.setState({ [target.name]: target.value });
-  }
 
   render() {
     const { price, distance } = this.state;

@@ -15,6 +15,13 @@ namespace TaxiService.CarCatalog.Repositories
         {
             _carCatalogDbContext = carCatalogDbContext;
         }
+
+        public async Task AddCar(Car car)
+        {
+            _carCatalogDbContext.Cars.Add(car);
+            await _carCatalogDbContext.SaveChangesAsync();
+        }
+
         public async Task<Car> GetCarById(int carId)
         {
             return await _carCatalogDbContext.Cars.Where(c => c.CarId == carId).FirstOrDefaultAsync();

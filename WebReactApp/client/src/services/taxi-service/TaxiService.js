@@ -20,7 +20,6 @@ export default class TaxiService {
     };
     const response = await fetch(`${this._apiBase}${url}`, requestOptions);
     const result = await response.json();
-    console.log(result);
     return result;
   };
 
@@ -57,15 +56,12 @@ export default class TaxiService {
   login = async (values) => {
     const { username, password } = values;
     const body = { username, password };
-    var response = await this.createMethod(`/login/login`, body).then((user) => {
-      if (user && user.token) {
-        localStorage.setItem("user", JSON.stringify(user));
-        console.log(user);
-      }
-    });
-    var result = await response
-    console.log(result)
-    console.log(response)
+    const user = await this.createMethod(`/login/login`, body)
+    if (user && user.token) {
+      localStorage.setItem("user", JSON.stringify(user));
+      return user;
+    }
+    return user
   };
   logout() {
     localStorage.removeItem("user");

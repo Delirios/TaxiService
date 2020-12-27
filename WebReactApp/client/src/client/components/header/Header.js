@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component , Fragment} from "react";
 import { Link } from "react-router-dom";
 
 import { bindActionCreators } from "redux";
@@ -16,10 +16,10 @@ class Header extends Component {
   };
 
   renderLogin = () => {
-    const {loggedIn} = this.props;
-    console.log(this.props)
+    const { loggedIn } = this.props;
+    console.log(this.props);
     if (!loggedIn) {
-      console.log(this.props)
+      console.log(this.props);
       console.log("user null");
       return (
         <li className="nav-item">
@@ -31,18 +31,21 @@ class Header extends Component {
     }
     if (loggedIn) {
       console.log("user not null");
-      console.log(this.props.user)
-      if(this.props.user.role === "Admin")
-      {
+      console.log(this.props.user);
+      if (this.props.user.role === "Admin") {
         return (
-          <li className="nav-item">
-            <Link onClick={this.onClick} to="/login" className="nav-link">
-              Admin
-            </Link>
-            <Link onClick={this.onClick} to="/login" className="nav-link">
-              Logout
-            </Link>
-          </li>
+          <Fragment>
+            <li className="nav-item">
+              <Link to="/admin" className="nav-link">
+                Add driver
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link onClick={this.onClick} to="/login" className="nav-link">
+                Logout
+              </Link>
+            </li>
+          </Fragment>
         );
       }
       return (
@@ -115,7 +118,7 @@ class Header extends Component {
 }
 
 const mapStateToProps = ({ userReducer: { user, loggedIn } }) => {
-  return { user,loggedIn };
+  return { user, loggedIn };
 };
 
 const mapDispatchToProps = (dispatch, { taxiService }) => {

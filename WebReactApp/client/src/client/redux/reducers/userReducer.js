@@ -7,13 +7,13 @@ const userReducer = (state = initialState, action) => {
       console.log("REQUEST");
       return {
         loggedIn: false,
-        user: action.user,
+        user: action.payload,
       };
     case "USERS_LOGIN_SUCCESS":
       console.log("SUCCESS");
       return {
         loggedIn: true,
-        user: action.user,
+        user: action.payload,
       };
     case "USERS_LOGIN_FAILURE":
       console.log("FAILURE");

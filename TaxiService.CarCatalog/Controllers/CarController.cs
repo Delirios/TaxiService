@@ -26,5 +26,13 @@ namespace TaxiService.CarCatalog.Controllers
         {
             return await _carRepository.GetCars(categoryId);
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddCar([FromBody] Car car)
+        {
+            await _carRepository.AddCar(car);
+            return Ok();
+        }
     }
 }

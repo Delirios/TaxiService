@@ -14,7 +14,7 @@ import PrivateRoute from "../../helpers/PrivateRoute";
 
 import "./App.css";
 import PricingPage from "../pricing/PricingPage";
-import AboutPage from "../about/AboutPage";
+import AdminPage from "../admin/AdminPage";
 
 const App = ({ taxiService }) => {
   taxiService.getNews().then((data) => {
@@ -36,7 +36,7 @@ const App = ({ taxiService }) => {
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path ="/pricing" component={PricingPage}/>       
-          <Route path ="/about" component={AboutPage}/>
+          <Route path ="/admin" component={AdminPage}/>
         </Switch>
         <Footer />
       </Router>
