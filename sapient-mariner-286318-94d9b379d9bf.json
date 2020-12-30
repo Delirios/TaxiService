@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sapient-mariner-286318",
+  "private_key_id": "94d9b379d9bfc2569f1d964eccf45ff01328f6ac",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDKOC+LDBkFI8nH\n5wVAuogj9rKs3KbFn0qe4I6aaq0eG7r8Q76HJnXVEhRTvs3pHMEpi0faew2qY/ru\n5Mdcr+LfHFAswrpOvaG7H4Z2Z7jdMI3YjvsAJ+z9ZS0D3akOs3os4cdB2Ex274wI\nwN7hYV0VimaCLdDp+H4cSmhPVEeUKXIUOMqV78e3ypeM5sfgQy+Q3GjWHOyWJaFS\nn2DyyQDuWg/6EL7xjUoJ8u3O4vyOfGtK0tuKC0CBIk6e3nXuSTGAEMkfvYmdI2+O\nkg7UHnFxcPoWT95HhxHtKFYzTj+fd9+/LT6CcEHGXHif/7zil57PC3k/FrkeBzft\n9DkeHZFHAgMBAAECggEAW3VC52/uxvjTM4KkSQy0MxPJ5s2a7cln/ehRBrzVlEb1\ncE+RVd3KsDXPlLq4tURIhqoUMtexrA0w+ifllOGFyeOrzTq6+Y7hnViaP2YU4ZEq\nrjWohv8Hu+ktDVEMu3Xn/XGV5Y1Ws/oOiwz0INogt/PS/fCLyq4VF2V9vNdA0lyI\nasq+jOWGK0HzW5JOG1hb4YBbbXrxaa4C+SDegVCiKQCvcyK5jUuDQ9E8nGZhys/w\nZMcMouwYU0nrYRoVua1hVHt8O1x4CQ38yH1H5Kbhf+B8GBOOq5XPqlv1sqsa7jZo\nHGNRCvGbxwXvlv7Z1bmSXkpBXPXzfwSCgvQ4jvZb1QKBgQDrW6kEKDgTqlLQLqNY\n3KDSvvsWdYQWUaNxFeHpc9t/R1lbSF6IYtsQGOh8YALIvzDHzcvxTuCp2uVKmQ9x\np4XjFvAmsq40I5tj2WLY2HaX6D7qDiHN5vYAXBvfV11cQz0XVRwl0s4iXWgV64D9\nbDSPNfTeaylNPUH6ljoNqOVnJQKBgQDb9HykPidnJL0hrLtgSGRwWVNBUiy0bFIX\nyQIHc/L7f+WCRQAHgy2tJlR8vepyxUQfcCDekCESp1d8dFjyyfSZ13Oen3DtOUGE\nzhImIXYFxp7vOFijGTWW5ojzZZZ9aIr25BEk//wYUE2jOiM7xqmsw3xFnXBzfdyG\nNkHrRqiw+wKBgQCkUQMoVtgHysM0e0sp0Ccr25A7duI4HtkoK6nkrjGRpAObumPd\nfn8ItwshQnrPIsRwyppXJ8WscJniwgfJRrcv+6TAr8D1v+JODMh5Mm9h0RCTojgx\no80eJTCEdl9E+eCd+JrFQW8PCP2RSDFvPOtZDMefvVtBhMIarGVtgfxfTQKBgQCy\nkdyXIvauYD9EFY3R7zPLmlljEKnGmKJVORVyo4nC8OSNTCNn9fGhPxscYrryDoDt\n3QRybCTNlhoKqhKEmb0BIM93Gg5+KRuuC/bkCgpdShFCOUaMsyy0o9jPccwpaDRZ\nmHLqzQAHZTqCp/Ju1yxtXA+KHPVsbeQY+feuYSEW/QKBgQDPGvNRxgkA8Hyqf5rJ\nXWvIkFt0fJr7hbLDBMBd2FpqQobO6DK7MgQwXXHCAuNquwCeYQHd82mB4PoihtFk\naEUhqIL63WDyCWgmj/3e5MyDNjV/DPVsYzXDo6RH3ryqzpnlWUfr8HGeYcz1HZ+D\n4ZNqiqYIwkFPztL0JYVtMAd6Yg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "new-service-account@sapient-mariner-286318.iam.gserviceaccount.com",
+  "client_id": "104575474917083652915",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/new-service-account%40sapient-mariner-286318.iam.gserviceaccount.com"
+}

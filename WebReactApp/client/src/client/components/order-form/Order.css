@@ -1,8 +1,9 @@
-.order{
-    
-  background-color:floralwhite;
-  margin: 20px;
+.order-background{
+background-image: url(https://avangard-taxi.kiev.ua/wp-content/uploads/2017/10/articleTaxi.jpg);
+background-size: cover;
+  min-height: 100vh;
+  
 }
-.form-control{
-    background-color: blue;
+.order-color{
+  color: white;
 }

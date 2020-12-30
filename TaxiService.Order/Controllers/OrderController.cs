@@ -36,7 +36,7 @@ namespace TaxiService.Order.Controllers
             return Ok(result);
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Roles = "Admin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost("")]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderCommand command)
         {

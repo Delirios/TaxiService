@@ -6,8 +6,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "35.234.151.123",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 5333
         }
       ],
       "UpstreamPathTemplate": "/gateway/category",
@@ -18,8 +18,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "35.234.151.123",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 5333
         }
       ],
       "UpstreamPathTemplate": "/gateway/car",
@@ -30,8 +30,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "35.234.151.123",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 5333
         }
       ],
       "UpstreamPathTemplate": "/gateway/car/{id}",
@@ -92,8 +92,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "host.docker.internal",
-          "Port": 8082
+          "Host": "localhost",
+          "Port": 5123
         }
       ],
       "UpstreamPathTemplate": "/gateway/news",
@@ -106,7 +106,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 59637
+          "Port": 5963
         }
       ],
       "UpstreamPathTemplate": "/gateway/order",
@@ -122,7 +122,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 59637
+          "Port": 5963
         }
       ],
       "UpstreamPathTemplate": "/gateway/order/{orderId}",
@@ -139,7 +139,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 51096
+          "Port": 5109
         }
       ],
       "UpstreamPathTemplate": "/gateway/login/login",
@@ -152,7 +152,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 51096
+          "Port": 5109
         }
       ],
       "UpstreamPathTemplate": "/gateway/login/register",

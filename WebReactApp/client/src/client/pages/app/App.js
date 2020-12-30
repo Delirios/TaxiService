@@ -5,7 +5,7 @@ import React from "react";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import HomePage from "../home/HomePage";
-import News from "../../components/news/News";
+import NewsPage from "../news/NewsPage";
 import WithTaxiService from "../../components/hoc-helpers/WithTaxiService";
 import OrderPage from "../order/OrderPage";
 import LoginPage from "../login/LoginPage";
@@ -31,7 +31,7 @@ const App = ({ taxiService }) => {
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/news" component={News} />
+          <Route path="/news" component={NewsPage} />
           <PrivateRoute exact path="/order" component={OrderPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />

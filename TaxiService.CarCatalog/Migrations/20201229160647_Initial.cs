@@ -2,7 +2,7 @@
 
 namespace TaxiService.CarCatalog.Migrations
 {
-    public partial class Init : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,10 +10,10 @@ namespace TaxiService.CarCatalog.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    CategoryId = table.Column<int>(nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Price = table.Column<int>(nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -24,10 +24,11 @@ namespace TaxiService.CarCatalog.Migrations
                 name: "Cars",
                 columns: table => new
                 {
-                    CarId = table.Column<int>(nullable: false)
+                    CarId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Model = table.Column<string>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: true)
+                    Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    ImageName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -38,17 +39,6 @@ namespace TaxiService.CarCatalog.Migrations
                         principalTable: "Categories",
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.InsertData(
-                table: "Categories",
-                columns: new[] { "CategoryId", "Name", "Price" },
-                values: new object[,]
-                {
-                    { 1, "First", 100 },
-                    { 2, "Second", 200 },
-                    { 3, "Third", 300 },
-                    { 4, "Fourth", 400 }
                 });
 
             migrationBuilder.CreateIndex(

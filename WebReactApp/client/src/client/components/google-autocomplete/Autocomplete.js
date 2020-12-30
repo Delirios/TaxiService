@@ -43,7 +43,7 @@ class Autocomplete extends React.Component {
               {...getInputProps({
                 name: {name},
                 placeholder: "Search Places ...",
-                className: "location-search-input form-group",
+                className: "location-search-input form-control",
               })}
             />
             <div className="autocomplete-dropdown-container">

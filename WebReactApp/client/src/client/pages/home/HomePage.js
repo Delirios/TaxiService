@@ -6,14 +6,12 @@ import "./HomePage.css";
 
 const HomePage = () => {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid home-background">
       <div className="row">
         <div className="main col">
-          <h1>Main COntent</h1>
           <CarouselComponent />
         </div>
         <div className="news col-3">
-          <h1>News COntent</h1>
           <News />
         </div>
       </div>

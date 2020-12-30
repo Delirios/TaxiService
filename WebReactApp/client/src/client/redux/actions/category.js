@@ -4,16 +4,38 @@ const categoriesRequested = () => {
   };
 };
 
-const categoriesLoaded = (newCategories) => {
+const categoriesLoaded = (request) => {
+  console.log("Success")
   return {
     type: "FETCH_CATEGORIES_SUCCESS",
-    payload: newCategories,
+    payload: request,
+  };
+};
+const carsRequested = () => {
+  return {
+    type: "FETCH_CARS_REQUEST",
   };
 };
 
-const fetchCategories = (dispatch, taxiService) => () => {
-  dispatch(categoriesRequested());
-  taxiService.getCategories().then((data) => dispatch(categoriesLoaded(data)));
+const carsLoaded = (request) => {
+  console.log("Success")
+  return {
+    type: "FETCH_CARS_SUCCESS",
+    payload: request,
+  };
+};
+const fetchCars = (taxiService) => () => async(dispatch)=> {
+  dispatch(carsRequested());
+  let cars = await taxiService.getCars();
+  console.log(cars)
+  dispatch(carsLoaded(cars));
 };
 
-export { categoriesLoaded, fetchCategories };
+const fetchCategories = (taxiService) => () => async(dispatch)=> {
+  dispatch(categoriesRequested());
+  let categories = await taxiService.getCategories();
+  console.log(categories)
+  dispatch(categoriesLoaded(categories));
+};
+
+export { categoriesLoaded, fetchCategories,fetchCars };

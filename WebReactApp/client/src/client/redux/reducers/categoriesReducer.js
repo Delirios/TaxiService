@@ -1,5 +1,6 @@
 const initialState = {
   categories: [],
+  cars:[],
   orders: [],
 };
 
@@ -12,10 +13,23 @@ const categoriesReducer = (state = initialState, action) => {
       };
 
     case "FETCH_CATEGORIES_SUCCESS":
+      console.log(action.payload)
       return {
         ...state,
         categories: action.payload,
       };
+      case "FETCH_CARS_REQUEST":
+        return {
+          ...state,
+          cars: [],
+        };
+  
+      case "FETCH_CARS_SUCCESS":
+        console.log(action.payload)
+        return {
+          ...state,
+          cars: action.payload,
+        };
     case "CREATE_ORDER":
       return {
         ...state,

@@ -42,6 +42,7 @@ class Login extends Component {
     const { handleSubmit } = this.props;
 
     return (
+      <div  className="login-background">
       <div className="container">
         <div className="row">
           <div className="col-md-6">
@@ -93,6 +94,7 @@ class Login extends Component {
             </form>
           </div>
         </div>
+      </div>
       </div>
     );
   }

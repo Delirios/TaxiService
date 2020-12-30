@@ -11,6 +11,8 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "/gateway",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TaxiService.CarCatalog.DbContexts;
+using TaxiService.CarCatalog.DTO;
 using TaxiService.CarCatalog.Models;
 
 namespace TaxiService.CarCatalog.Repositories
@@ -14,6 +15,18 @@ namespace TaxiService.CarCatalog.Repositories
         public CategoryRepository(CarCatalogDbContext carCatalogDbContext)
         {
             _carCatalogDbContext = carCatalogDbContext;
+        }
+        public async Task AddCategory (CategoryDTO carDTO)
+        {
+            var car = new Category
+            {
+                CategoryId = carDTO.CategoryId,
+                Name = carDTO.Name,
+                Price = carDTO.Price,
+                ImageName = carDTO.ImageName
+            };
+            _carCatalogDbContext.Categories.Add(car);
+            await _carCatalogDbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Category>> GetAllCategories()

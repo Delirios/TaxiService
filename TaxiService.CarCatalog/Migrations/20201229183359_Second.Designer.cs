@@ -10,26 +10,29 @@ using TaxiService.CarCatalog.DbContexts;
 namespace TaxiService.CarCatalog.Migrations
 {
     [DbContext(typeof(CarCatalogDbContext))]
-    [Migration("20201022165844_Init")]
-    partial class Init
+    [Migration("20201229183359_Second")]
+    partial class Second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.9")
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.0");
 
             modelBuilder.Entity("TaxiService.CarCatalog.Models.Car", b =>
                 {
                     b.Property<int>("CarId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
@@ -46,7 +49,10 @@ namespace TaxiService.CarCatalog.Migrations
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -57,32 +63,6 @@ namespace TaxiService.CarCatalog.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryId = 1,
-                            Name = "First",
-                            Price = 100
-                        },
-                        new
-                        {
-                            CategoryId = 2,
-                            Name = "Second",
-                            Price = 200
-                        },
-                        new
-                        {
-                            CategoryId = 3,
-                            Name = "Third",
-                            Price = 300
-                        },
-                        new
-                        {
-                            CategoryId = 4,
-                            Name = "Fourth",
-                            Price = 400
-                        });
                 });
 
             modelBuilder.Entity("TaxiService.CarCatalog.Models.Car", b =>
@@ -90,6 +70,13 @@ namespace TaxiService.CarCatalog.Migrations
                     b.HasOne("TaxiService.CarCatalog.Models.Category", "Category")
                         .WithMany("Cars")
                         .HasForeignKey("CategoryId");
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("TaxiService.CarCatalog.Models.Category", b =>
+                {
+                    b.Navigation("Cars");
                 });
 #pragma warning restore 612, 618
         }

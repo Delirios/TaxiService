@@ -1,16 +1,18 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TaxiService.CarCatalog.Models
+namespace TaxiService.CarCatalog.DTO
 {
-    public class Category
+    public class CategoryDTO
     {
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
         public string ImageName { get; set; }
-        public List<Car> Cars { get; set; }
+
+        public IFormFile Image { get; set; }
     }
 }

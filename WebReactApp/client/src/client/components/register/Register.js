@@ -21,6 +21,7 @@ class Register extends Component {
     const { handleSubmit } = this.props;
 
     return (
+      <div className="register-background">
       <div className="container">
         <div className="row">
           <div className="col-md-6">
@@ -93,6 +94,7 @@ class Register extends Component {
             </form>
           </div>
         </div>
+      </div>
       </div>
     );
   }

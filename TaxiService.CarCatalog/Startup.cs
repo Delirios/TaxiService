@@ -36,6 +36,7 @@ namespace TaxiService.CarCatalog
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CarCatalog API", Version = "v1" });
             });
+            services.AddSingleton<ICloudStorage, CloudStorage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +55,13 @@ namespace TaxiService.CarCatalog
 
             app.UseRouting();
 
-            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseCors(builder => builder
+                 .AllowAnyHeader()
+                 .AllowAnyMethod()
+                 .SetIsOriginAllowed(_ => true)
+                 .AllowCredentials()
+             );
+
 
             app.UseAuthorization();
 

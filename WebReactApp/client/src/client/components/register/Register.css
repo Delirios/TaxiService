@@ -1,7 +1,9 @@
-body {
-    background: gray
+.register-background{
+    background-image: url(https://arosalenzerheide.swiss/deskline/infrastruktur/objekte/fortuna-taxi_125241/Taxi_227289.pjpeg);
+    background-size: cover;
+    min-height: 100vh;
+    
 }
-
 .box-register {
     width: 700px;
     padding: 50px;

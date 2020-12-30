@@ -1,3 +1,11 @@
 .carousel {
     position: sticky;
 }
+.jumbotron{
+    background-color: whitesmoke;
+    padding: 1px;
+}
+
+.h1-color{
+color: red;
+}
