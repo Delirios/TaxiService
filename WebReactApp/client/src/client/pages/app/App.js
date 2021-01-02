@@ -6,6 +6,8 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import HomePage from "../home/HomePage";
 import NewsPage from "../news/NewsPage";
+
+import AccountPage from "../account/AccountPage";
 import WithTaxiService from "../../components/hoc-helpers/WithTaxiService";
 import OrderPage from "../order/OrderPage";
 import LoginPage from "../login/LoginPage";
@@ -36,7 +38,8 @@ const App = ({ taxiService }) => {
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path ="/pricing" component={PricingPage}/>       
-          <Route path ="/admin" component={AdminPage}/>
+          <Route path ="/admin" component={AdminPage}/>               
+          <Route path ="/account" component={AccountPage}/>
         </Switch>
         <Footer />
       </Router>

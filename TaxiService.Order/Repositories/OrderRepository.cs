@@ -23,9 +23,9 @@ namespace TaxiService.Order.Repositories
             return await _orderDbContext.Reservations.ToListAsync();
         }
 
-        public async Task<Reservation> GetOrderById(int orderId)
+        public async Task<Reservation> GetOrderByUserId(string userId)
         {
-            return await _orderDbContext.Reservations.Where(r => r.OrderId == orderId).FirstOrDefaultAsync();
+            return await _orderDbContext.Reservations.Where(r => r.UserId == userId).FirstOrDefaultAsync();
         }
 
         public Task<IEnumerable<Reservation>> GetOrdersByUsername(string userName)
@@ -41,7 +41,8 @@ namespace TaxiService.Order.Repositories
                 OriginAddresses = order.OriginAddresses,
                 DestinationAddresses = order.DestinationAddresses,
                 Price = order.Price,
-                Distance = order.Distance
+                Distance = order.Distance,
+                DateTime = DateTime.Now
             };
             _orderDbContext.Reservations.Add(reservation);
             await _orderDbContext.SaveChangesAsync();

@@ -1,27 +1,33 @@
 const initialState = {
-  isCreated: false,
+  orderStatus: "",
+  orders : []
 };
 
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "CREATE_ORDER_REQUEST":
+    case "ORDER_REQUEST":
       return {
-        ...state,
-        isCreated: false,
+        ...state
       };
 
     case "CREATE_ORDER_SUCCESS":
-      console.log(action.payload);
       return {
         ...state,
-        isCreated : true,
+        orderStatus: action.payload,
       };
     case "CREATE_ORDER_FAILURE":
       return {
         ...state,
-        isCreated : false,
+        orderStatus: action.payload,
+      };
+    case "FETCH_ORDERS_SUCCESS":
+      return {
+        ...state,
+        orders: action.payload,
       };
     default:
       return state;
   }
 };
+
+export default orderReducer;

@@ -10,16 +10,16 @@ using TaxiService.Order.Repositories;
 
 namespace TaxiService.Order.Handlers
 {
-    public class GetOrderByIdHandler : IRequestHandler<GetOrderByIdQuery, Reservation>
+    public class GetOrderByUserIdHandler : IRequestHandler<GetOrderByUserIdQuery, Reservation>
     {
         private readonly IOrderRepository _orderRepository;
-        public GetOrderByIdHandler(IOrderRepository orderRepository)
+        public GetOrderByUserIdHandler(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
         }
-        public async Task<Reservation> Handle(GetOrderByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Reservation> Handle(GetOrderByUserIdQuery request, CancellationToken cancellationToken)
         {
-            return await _orderRepository.GetOrderById(request.OrderId);
+            return await _orderRepository.GetOrderByUserId(request.UserId);
         }
     }
 }

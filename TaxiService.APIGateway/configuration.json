@@ -110,7 +110,7 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/order",
-      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UpstreamHttpMethod": [ "POST" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "IdentityKey",
         "AllowedScopes": []
@@ -126,6 +126,22 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/order/{orderId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityKey",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/order",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5963
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/order",
       "UpstreamHttpMethod": [ "GET" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "IdentityKey",

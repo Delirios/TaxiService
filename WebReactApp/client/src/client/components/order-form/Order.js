@@ -5,7 +5,12 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { createOrders } from "../../redux/actions/order";
 import { Link } from "react-router-dom";
-import {createNotification} from "../notification/Notification";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+
+import "../../../../node_modules/react-notifications/lib/notifications.css";
 
 import { fetchCategories } from "../../redux/actions/category";
 import CategoryItem from "../../components/category-item/CategoryItem";
@@ -30,6 +35,7 @@ class Order extends Component {
     };
   }
   componentDidMount = () => {
+    console.log(this.props);
     this.props.fetchCategories();
     console.log(this.props.categories);
     console.log(this.state.category);
@@ -110,13 +116,29 @@ class Order extends Component {
       this.calculatePrice(fromCoordinates, toCoordinates);
     }
   };
-
-  handleSubmit = (event) => {
+  createNotification = (type) => {
+    return () => {
+      switch (String(type)) {
+        case "OK":
+          NotificationManager.success("Success message", "Title here");
+          break;
+        case "ERROR":
+          NotificationManager.error("Error message", "Click me!", 5000, () => {
+            alert("callback");
+          });
+          break;
+        default:
+          return null;
+      }
+    };
+  };
+  handleSubmit = async (event) => {
     event.preventDefault();
     var user = JSON.parse(localStorage.getItem("user"));
     const { createOrders } = this.props;
     //console.log(user);
-    createOrders(this.state, user);
+    await createOrders(this.state, user);
+    console.log(this.props);
   };
 
   render() {
@@ -166,9 +188,14 @@ class Order extends Component {
                   </Link>
                 </div>
                 <div class="col">
-                  <button type="submit" className="btn btn-primary">
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    onClick={this.createNotification(this.props.orderStatus)}
+                  >
                     Замовити
-                  </button>                
+                  </button>
+                  <NotificationContainer />
                 </div>
               </div>
             </form>
@@ -184,8 +211,11 @@ class Order extends Component {
   }
 }
 
-const mapStateToProps = ({ categoriesReducer: { categories } }) => {
-  return { categories };
+const mapStateToProps = ({
+  categoriesReducer: { categories },
+  orderReducer: { orderStatus },
+}) => {
+  return { categories, orderStatus };
 };
 const mapDispatchToProps = (dispatch, { taxiService }) => {
   return bindActionCreators(

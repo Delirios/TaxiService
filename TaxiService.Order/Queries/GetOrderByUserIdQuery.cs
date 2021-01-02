@@ -7,13 +7,13 @@ using TaxiService.Order.Models;
 
 namespace TaxiService.Order.Queries
 {
-    public class GetOrderByIdQuery : IRequest<Reservation>
+    public class GetOrderByUserIdQuery : IRequest<Reservation>
     {
-        public int OrderId { get; }
+        public string UserId { get; }
 
-        public GetOrderByIdQuery(int orderId)
+        public GetOrderByUserIdQuery(string userId)
         {
-            OrderId = orderId;
+            UserId = userId;
         }
     }
 }

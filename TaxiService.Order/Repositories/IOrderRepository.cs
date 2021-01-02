@@ -10,7 +10,7 @@ namespace TaxiService.Order.Repositories
     {
         Task<IEnumerable<Reservation>> GetAllOrders();
 
-        Task<Reservation> GetOrderById(int orderId);
+        Task<Reservation> GetOrderByUserId(string userId);
         Task<IEnumerable<Reservation>> GetOrdersByUsername(string userName);
         Task<Reservation> CreateOrder(Reservation reservation);
     }

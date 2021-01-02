@@ -8,22 +8,30 @@ export default class TaxiService {
     if (!res.ok) {
       throw new Error(`Could not fetch ${url} , received ${res.status}`);
     }
-    return await res.json();
+    return  res;
+  };
+  getAuthorizeResource = async (url,config) => {
+    console.log(config)
+    const res = await fetch(`${this._apiBase}${url}`,config);
+    if (!res.ok) {
+      throw new Error(`Could not fetch ${url} , received ${res.status}`);
+    }
+    return res;
   };
 
   createMethod = async (url, config) => {
     console.log(config);
-    const response = await fetch(`${this._apiBase}${url}`, config);
+    const response = await fetch(`${this._apiBase}${url}`,config);
 
-    const result = await response.json();
+    //const result = await response.json();
 
-    return result;
+    return response;
   };
   createOrder = async (newOrder, user) => {
     const { destinationAddresses, originAddresses, distance, price } = newOrder;
     console.log(newOrder);
     const { userId, token } = user;
-    console.log(userId,token)
+    console.log(userId, token);
     const body = {
       userId,
       originAddresses,
@@ -39,9 +47,13 @@ export default class TaxiService {
       },
       body: JSON.stringify(body),
     };
-    const res = await this.createMethod(`/Order`, config);
-    console.log(res)
-    return res;
+    const response = await this.createMethod(`/Order`, config);
+    let result = "ERROR";
+    if (response.ok) {
+      result = "OK";
+      return result;
+    }
+    return result;
   };
 
   addCar = async (newCar) => {
@@ -55,21 +67,44 @@ export default class TaxiService {
       body: form,
     };
     console.log(newCar);
-    const res = await this.createMethod(`/Car/Add`, config);
-    return res;
+    const response = await this.createMethod(`/Car/Add`, config);
+    const result = await response.json();
+    return result;
   };
 
   getNews = async () => {
-    const news = await this.getResource(`/news`);
+    const response = await this.getResource(`/news`);
+    const news = await response.json();
     return news;
+  };
+  getOrders = async (user) => {
+    console.log(user)
+    const {token, userId } = user;
+    console.log(token)
+    const config = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      }
+    };
+
+    const response = await this.getAuthorizeResource(`/order/${userId}`,config);
+
+    const orders = await response.json();
+    return orders;
   };
 
   getCategories = async () => {
-    const categories = await this.getResource(`/category`);
+    const response = await this.getResource(`/category`);
+
+    const categories = await response.json();
     return categories;
   };
   getCars = async () => {
-    const cars = await this.getResource(`/car`);
+    const response = await this.getResource(`/car`);
+
+    const cars = await response.json();
     return cars;
   };
 
@@ -89,7 +124,8 @@ export default class TaxiService {
       },
       body: JSON.stringify(body),
     };
-    const user = await this.createMethod(`/login/login`, config);
+    const responce = await this.createMethod(`/login/login`, config);
+    const user = await responce.json();
     if (user && user.token) {
       localStorage.setItem("user", JSON.stringify(user));
       return user;

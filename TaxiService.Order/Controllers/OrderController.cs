@@ -18,8 +18,6 @@ namespace TaxiService.Order.Controllers
             _mediator = mediator;
         }
 
-
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllOrders()
         {
@@ -27,11 +25,12 @@ namespace TaxiService.Order.Controllers
             var result = await _mediator.Send(query);
             return Ok(result);              
         }
+
         [Authorize]
-        [HttpGet("{orderId}")]
-        public async Task<IActionResult> GetOrderById(int orderId)
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetOrderByUserId(string userId)
         {
-            var query = new GetOrderByIdQuery(orderId);
+            var query = new GetOrderByUserIdQuery(userId);
             var result = await _mediator.Send(query);
             return Ok(result);
         }

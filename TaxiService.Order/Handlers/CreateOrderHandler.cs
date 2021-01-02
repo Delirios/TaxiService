@@ -29,7 +29,8 @@ namespace TaxiService.Order.Handlers
                 OriginAddresses = request.OriginAddresses,
                 DestinationAddresses = request.DestinationAddresses,
                 Price = request.Price,
-                Distance = request.Distance
+                Distance = request.Distance,
+                DateTime = DateTime.Now
 
             });
             return order;
