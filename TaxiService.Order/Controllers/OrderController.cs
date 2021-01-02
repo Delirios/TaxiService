@@ -41,7 +41,7 @@ namespace TaxiService.Order.Controllers
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderCommand command)
         {
             var result = await _mediator.Send(command);
-            return CreatedAtAction("GetOrderById", new { orderId = result.OrderId}, result);         
+            return Ok(result);      
         }
     }
 }

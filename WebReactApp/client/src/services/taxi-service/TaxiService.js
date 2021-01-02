@@ -16,6 +16,7 @@ export default class TaxiService {
     const response = await fetch(`${this._apiBase}${url}`, config);
 
     const result = await response.json();
+
     return result;
   };
   createOrder = async (newOrder, user) => {
@@ -39,6 +40,7 @@ export default class TaxiService {
       body: JSON.stringify(body),
     };
     const res = await this.createMethod(`/Order`, config);
+    console.log(res)
     return res;
   };
 

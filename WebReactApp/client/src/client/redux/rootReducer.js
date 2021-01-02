@@ -4,6 +4,7 @@ import categoriesReducer from "./reducers/categoriesReducer";
 
 import adminReducer from "./reducers/adminReducer";
 import userReducer from "./reducers/userReducer";
+import orderReducer from "./reducers/orderReducer";
 import { reducer as formReducer } from "redux-form";
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   categoriesReducer,
   userReducer,
   adminReducer,
+  orderReducer,
   form: formReducer,
 });
 
