@@ -1,7 +1,7 @@
 import { Router, Route, Switch } from "react-router-dom";
 import { history } from "../../../services/utils/history";
 
-import React from "react";
+import React,{ Component } from "react";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import HomePage from "../home/HomePage";
@@ -17,16 +17,26 @@ import PrivateRoute from "../../helpers/PrivateRoute";
 import "./App.css";
 import PricingPage from "../pricing/PricingPage";
 import AdminPage from "../admin/AdminPage";
+import Spinner from "../../components/spinner/Spinner"
 
-const App = ({ taxiService }) => {
-  taxiService.getNews().then((data) => {
-    console.log(data);
-  });
-  taxiService.getCategories().then((data) => {
-    console.log(data);
-  });
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      initLoading : true,
+    };
+  }
+componentDidMount=()=>{
+  setTimeout(() => {
+    this.setState({ initLoading: false })
+  }, 2500)
+}
 
-
+  
+render(){
+  if(this.state.initLoading){
+    return  <Spinner/>
+  }
   return (
     <div className="App">
       <Router history={history}>
@@ -47,4 +57,7 @@ const App = ({ taxiService }) => {
   );
 };
 
+}
+
+  
 export default WithTaxiService()(App);
