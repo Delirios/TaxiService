@@ -1,6 +1,6 @@
 export default class TaxiService {
-  //_apiBase = "http://34.89.120.234/gateway";
-  _apiBase = "http://localhost:55360/gateway";
+  _apiBase = "http://34.105.135.203/gateway";
+  //_apiBase = "http://localhost:55360/gateway";
 
   //_apiBase = "http://localhost:5000";
   getResource = async (url) => {

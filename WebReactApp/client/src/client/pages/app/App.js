@@ -49,7 +49,7 @@ render(){
           <Route path="/register" component={RegisterPage} />
           <Route path ="/pricing" component={PricingPage}/>       
           <Route path ="/admin" component={AdminPage}/>               
-          <Route path ="/account" component={AccountPage}/>
+          <PrivateRoute exact path ="/account" component={AccountPage}/>
         </Switch>
         <Footer />
       </Router>
