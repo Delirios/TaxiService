@@ -133,6 +133,7 @@ class Order extends Component {
     };
   };
   handleSubmit = async (event) => {
+    console.log(event)
     event.preventDefault();
     var user = JSON.parse(localStorage.getItem("user"));
     const { createOrders } = this.props;

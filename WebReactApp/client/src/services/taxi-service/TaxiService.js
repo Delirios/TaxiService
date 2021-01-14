@@ -1,6 +1,7 @@
+import { history } from '../utils/history'
 export default class TaxiService {
-  _apiBase = "http://34.105.135.203/gateway";
-  //_apiBase = "http://localhost:55360/gateway";
+  //_apiBase = "http://34.105.135.203/gateway";
+  _apiBase = "http://localhost:55360/gateway";
 
   //_apiBase = "http://localhost:5000";
   getResource = async (url) => {
@@ -22,7 +23,7 @@ export default class TaxiService {
   createMethod = async (url, config) => {
     console.log(config);
     const response = await fetch(`${this._apiBase}${url}`,config);
-
+console.log(response)
     //const result = await response.json();
 
     return response;
@@ -108,9 +109,24 @@ export default class TaxiService {
     return cars;
   };
 
-  registerUser = async (user) => {
-    const res = await this.registerUser(`/login/register`, user);
-    return res;
+  register = async (user) => {
+    console.log(user)
+    const config = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    };
+    const responce = await this.createMethod(`/login/register`, config);
+    console.log(responce)
+    if(responce.ok){    
+      console.log("true")
+      history.push("/login");
+      return "OK";
+    }
+    console.log("false")
+    return "Username already taken";
   };
 
   login = async (values) => {

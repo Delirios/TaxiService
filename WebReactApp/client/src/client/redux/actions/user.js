@@ -1,6 +1,5 @@
 import { history } from '../../../services/utils/history';
 
-
 const requestLogin = (request) => {
   return {
     type: "USERS_LOGIN_REQUEST",
@@ -20,6 +19,18 @@ const successLogout = () => {
   };
 };
 
+const requestRegister = () => {
+  return {
+    type: "USERS_REGISTER_REQUEST"
+  };
+};
+const successRegister = (request) => {
+  console.log(request)
+  return { 
+    type: "USERS_REGISTER_SUCCESS",
+    payload: request,
+  };
+};
 
 const login = (taxiService, values) => () => async (dispatch) => {
   const {username} = values
@@ -30,12 +41,15 @@ const login = (taxiService, values) => () => async (dispatch) => {
     history.push("/");
 };
 
+const register=(taxiService, values)=>()=> async (dispatch) =>{
+  dispatch(requestRegister());
+  const result  =await taxiService.register(values);
+  console.log(result)
+  dispatch(successRegister());
+}
 const logout=(taxiService) =>() => (dispatch) =>{
   dispatch(successLogout());
     taxiService.logout();
 }
 
-const register=()=>{
-
-}
 export { login ,logout,register};

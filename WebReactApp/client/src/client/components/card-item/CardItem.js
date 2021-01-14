@@ -11,7 +11,6 @@ const CardItem = ({
     <div class="col">
       <div class="card shadow-sm">
         <img src={cardItemImageName} width="100%" height="250" alt="error" />
-
         <div class="card-body">
           <p class="card-text">{cardItemName}</p>
           <div class="d-flex justify-content-between align-items-center">
