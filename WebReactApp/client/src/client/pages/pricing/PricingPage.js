@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import CardItem from "../../components/card-item/CardItem";
 
-import { fetchCategories, fetchCars } from "../../redux/actions/category";
+import { fetchCategories, fetchCars } from "../../redux/actions/catalog";
 
 import WithTaxiService from "../../components/hoc-helpers/WithTaxiService";
 import compose from "../../../services/utils/compose";
@@ -36,7 +36,7 @@ class PricingPage extends Component {
   }
 }
 
-const mapStateToProps = ({ categoriesReducer: { categories, cars } }) => {
+const mapStateToProps = ({ catalogReducer: { categories, cars } }) => {
   return { categories, cars };
 };
 const mapDispatchToProps = (dispatch, { taxiService }) => {

@@ -12,7 +12,7 @@ import {
 
 import "../../../../node_modules/react-notifications/lib/notifications.css";
 
-import { fetchCategories } from "../../redux/actions/category";
+import { fetchCategories } from "../../redux/actions/catalog";
 import CategoryItem from "../../components/category-item/CategoryItem";
 
 import WithTaxiService from "../hoc-helpers/WithTaxiService";
@@ -213,7 +213,7 @@ class Order extends Component {
 }
 
 const mapStateToProps = ({
-  categoriesReducer: { categories },
+  catalogReducer: { categories },
   orderReducer: { orderStatus },
 }) => {
   return { categories, orderStatus };

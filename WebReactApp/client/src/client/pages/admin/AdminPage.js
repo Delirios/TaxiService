@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { addCar } from "../../redux/actions/admin";
 
-import { fetchCategories, fetchCars } from "../../redux/actions/category";
+import { fetchCategories, fetchCars } from "../../redux/actions/catalog";
 
 import WithTaxiService from "../../components/hoc-helpers/WithTaxiService";
 import compose from "../../../services/utils/compose";
@@ -130,8 +130,7 @@ class AdminPage extends Component {
   }
 }
 
-const mapStateToProps = ({ categoriesReducer: { categories, cars },
-  adminReducer: { cars }, }) => {
+const mapStateToProps = ({ catalogReducer: { categories, cars } }) => {
   return { categories, cars };
 };
 const mapDispatchToProps = (dispatch, { taxiService }) => {

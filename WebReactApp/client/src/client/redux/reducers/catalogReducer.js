@@ -4,7 +4,7 @@ const initialState = {
   orders: [],
 };
 
-const categoriesReducer = (state = initialState, action) => {
+const catalogReducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_CATEGORIES_REQUEST":
       return {
@@ -35,4 +35,4 @@ const categoriesReducer = (state = initialState, action) => {
   }
 };
 
-export default categoriesReducer;
+export default catalogReducer;

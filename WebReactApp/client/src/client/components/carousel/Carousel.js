@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Carousel } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchCategories } from "../../redux/actions/category";
+import { fetchCategories } from "../../redux/actions/catalog";
 
 import { Link } from "react-router-dom";
 import compose from "../../../services/utils/compose";
@@ -52,7 +52,7 @@ class CarouselComponent extends Component {
     return <CustomCarousel items={items} />;
   }
 }
-const mapStateToProps = ({ categoriesReducer: { categories } }) => {
+const mapStateToProps = ({ catalogReducer: { categories } }) => {
   return { categories };
 };
 const mapDispatchToProps = (dispatch, { taxiService }) => {
