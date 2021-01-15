@@ -30,12 +30,6 @@ const categoriesReducer = (state = initialState, action) => {
           ...state,
           cars: action.payload,
         };
-    case "CREATE_ORDER":
-      return {
-        ...state,
-        orders: action.payload,
-      };
-
     default:
       return state;
   }

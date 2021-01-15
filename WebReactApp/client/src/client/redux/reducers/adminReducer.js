@@ -9,6 +9,11 @@ const initialState = {
           ...state,
           cars: action.payload,
         };
+        case "DELETE_CAR":
+        return {
+          ...state,
+          cars: action.payload,
+        };
   
       default:
         return state;

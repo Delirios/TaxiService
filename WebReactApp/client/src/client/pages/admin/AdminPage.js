@@ -55,7 +55,9 @@ class AdminPage extends Component {
   onChangeUser(event) {
     console.log(event.target.value);
   }
+  deleteDriver(carId){
 
+  }
   render() {
     const { cars,categories } = this.props;
     console.log(cars);
@@ -72,6 +74,8 @@ class AdminPage extends Component {
                       <CardItem
                         cardItemName={cardItem.model}
                         cardItemImageName={cardItem.imageName}
+                        cardItemDelete ={this.deleteDriver}
+                        cardItemId = {cardItem.carId}
                       />
                     </div>
                   );
@@ -126,7 +130,8 @@ class AdminPage extends Component {
   }
 }
 
-const mapStateToProps = ({ categoriesReducer: { categories, cars } }) => {
+const mapStateToProps = ({ categoriesReducer: { categories, cars },
+  adminReducer: { cars }, }) => {
   return { categories, cars };
 };
 const mapDispatchToProps = (dispatch, { taxiService }) => {

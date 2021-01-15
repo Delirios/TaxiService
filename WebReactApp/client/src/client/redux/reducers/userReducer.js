@@ -27,9 +27,11 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loggedIn: false,
+        registerNotification: ""
       };
     case "USERS_REGISTER_SUCCESS":
       console.log("SUCCESS");
+      console.log(action.payload)
       return {
         ...state,
         loggedIn: false,

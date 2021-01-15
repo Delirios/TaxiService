@@ -45,7 +45,8 @@ const register=(taxiService, values)=>()=> async (dispatch) =>{
   dispatch(requestRegister());
   const result  =await taxiService.register(values);
   console.log(result)
-  dispatch(successRegister());
+  dispatch(successRegister(result));
+  return result
 }
 const logout=(taxiService) =>() => (dispatch) =>{
   dispatch(successLogout());

@@ -72,6 +72,15 @@ console.log(response)
     const result = await response.json();
     return result;
   };
+  deleteCar = async (carId) => {
+    const config = {
+      method: "POST",
+      body: carId,
+    };
+    const response = await this.createMethod(`/Car/Delete`, config);
+    const result = await response.json();
+    return result;
+  };
 
   getNews = async () => {
     const response = await this.getResource(`/news`);
