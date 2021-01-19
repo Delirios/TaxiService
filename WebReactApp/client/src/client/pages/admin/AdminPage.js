@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-
-import { addCar } from "../../redux/actions/admin";
-
+import { addCar, deleteCar } from "../../redux/actions/catalog";
 import { fetchCategories, fetchCars } from "../../redux/actions/catalog";
 
 import WithTaxiService from "../../components/hoc-helpers/WithTaxiService";
 import compose from "../../../services/utils/compose";
-
-import "./AdminPage.css";
 import CardItem from "../../components/card-item/CardItem";
 import CategoryItem from "../../components/category-item/CategoryItem";
+
+
+import "./AdminPage.css";
 
 class AdminPage extends Component {
   constructor(props) {
@@ -30,7 +29,8 @@ class AdminPage extends Component {
     console.log(this.props.cars);
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
+    
     event.preventDefault();
     const { addCar } = this.props;
     const { image, model, category } = this.state;
@@ -40,7 +40,15 @@ class AdminPage extends Component {
       category,
       image,
     };
-    addCar(body);
+    if(image !== null && category !=="" && model!==""){
+      console.log("good")
+      await addCar(body);
+    }
+    console.log("Bad")
+    document.getElementById("create-course-form").reset();
+    this.setState({ model: "", category: "", image: null });
+    await this.props.fetchCars();
+    console.log(this.props.cars);
   };
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
@@ -53,13 +61,18 @@ class AdminPage extends Component {
   };
 
   onChangeUser(event) {
+    
     console.log(event.target.value);
   }
-  deleteDriver(carId){
+  deleteDriver =async (carId)=> {
+    const{deleteCar, fetchCars} = this.props
 
+    await deleteCar(carId);
+    await fetchCars();
+    
   }
   render() {
-    const { cars,categories } = this.props;
+    const { cars, categories } = this.props;
     console.log(cars);
     return (
       <div className="container-fluid">
@@ -74,8 +87,8 @@ class AdminPage extends Component {
                       <CardItem
                         cardItemName={cardItem.model}
                         cardItemImageName={cardItem.imageName}
-                        cardItemDelete ={this.deleteDriver}
-                        cardItemId = {cardItem.carId}
+                        cardItemDelete={this.deleteDriver}
+                        cardItemId={cardItem.carId}
                       />
                     </div>
                   );
@@ -87,7 +100,7 @@ class AdminPage extends Component {
             <div class="container-fluid py-2">
               <h1>Add Car</h1>
               <div className="row add-car">
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} id="create-course-form" >
                   <div className="form-group">
                     <label>Model</label>
                     <input
@@ -96,6 +109,7 @@ class AdminPage extends Component {
                       className="form-control"
                       placeholder="model"
                       onChange={this.handleChange}
+                      value = {this.state.model}
                     />
                   </div>
                   <div className="form-group">
@@ -118,7 +132,7 @@ class AdminPage extends Component {
                     />
                   </div>
                   <button type="submit" className="btn btn-primary">
-                    Замовити
+                    Add
                   </button>
                 </form>
               </div>
@@ -137,6 +151,7 @@ const mapDispatchToProps = (dispatch, { taxiService }) => {
   return bindActionCreators(
     {
       addCar: (values) => dispatch(addCar(taxiService, values)),
+      deleteCar: (values) => dispatch(deleteCar(taxiService, values)),
       fetchCategories: fetchCategories(taxiService),
       fetchCars: fetchCars(taxiService),
     },

@@ -28,6 +28,13 @@
   color: #61dafb;
 }
 
+.rcw-launcher {
+  background-color: gray !important;
+}
+.rcw-conversation-container .rcw-header {
+  background-color:gray !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

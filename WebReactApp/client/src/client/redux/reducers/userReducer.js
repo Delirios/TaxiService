@@ -1,5 +1,7 @@
 let user = JSON.parse(localStorage.getItem("user"));
-const initialState = user ? { loggedIn: true, user, registerNotification: "" } : { loggedIn: false };
+const initialState = user
+  ? { loggedIn: true, user, registerNotification: "" }
+  : { loggedIn: false };
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -12,10 +14,7 @@ const userReducer = (state = initialState, action) => {
       };
     case "USERS_LOGIN_SUCCESS":
       console.log("SUCCESS");
-      return {...state,
-        loggedIn: true,
-        user: action.payload,
-      };
+      return { ...state, loggedIn: true, user: action.payload };
     case "USERS_LOGIN_FAILURE":
       console.log("FAILURE");
       return {};
@@ -27,15 +26,15 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loggedIn: false,
-        registerNotification: ""
+        registerNotification: "",
       };
     case "USERS_REGISTER_SUCCESS":
       console.log("SUCCESS");
-      console.log(action.payload)
+      console.log(action.payload);
       return {
         ...state,
         loggedIn: false,
-        registerNotification : action.payload
+        registerNotification: action.payload,
       };
     default:
       return state;

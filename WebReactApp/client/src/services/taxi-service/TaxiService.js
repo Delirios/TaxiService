@@ -1,9 +1,9 @@
 import { history } from '../utils/history'
-export default class TaxiService {
-  //_apiBase = "http://34.105.135.203/gateway";
-  _apiBase = "http://localhost:55360/gateway";
 
-  //_apiBase = "http://localhost:5000";
+export default class TaxiService {
+  _apiBase = "http://34.105.135.203/gateway";
+  //_apiBase = "http://localhost:55360/gateway";
+
   getResource = async (url) => {
     const res = await fetch(`${this._apiBase}${url}`);
     if (!res.ok) {
@@ -73,13 +73,19 @@ console.log(response)
     return result;
   };
   deleteCar = async (carId) => {
+    const car = {
+      carId
+    }
+
     const config = {
-      method: "POST",
-      body: carId,
+      method: "POST", 
+      headers: {
+      "Content-Type": "application/json"
+    },
+      body: JSON.stringify(car),
     };
+    console.log(config)
     const response = await this.createMethod(`/Car/Delete`, config);
-    const result = await response.json();
-    return result;
   };
 
   getNews = async () => {
