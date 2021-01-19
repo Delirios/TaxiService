@@ -9,7 +9,6 @@ import compose from "../../../services/utils/compose";
 import CardItem from "../../components/card-item/CardItem";
 import CategoryItem from "../../components/category-item/CategoryItem";
 
-
 import "./AdminPage.css";
 
 class AdminPage extends Component {
@@ -23,32 +22,26 @@ class AdminPage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount = async () => {
-    await this.props.fetchCategories();
-    await this.props.fetchCars();
-    console.log(this.props.categories);
-    console.log(this.props.cars);
+    const { fetchCategories, fetchCars } = this.props;
+    await fetchCategories();
+    await fetchCars();
   };
 
   handleSubmit = async (event) => {
-    
     event.preventDefault();
-    const { addCar } = this.props;
+    const { addCar, fetchCars } = this.props;
     const { image, model, category } = this.state;
-    console.log(this.state);
     const body = {
       model,
       category,
       image,
     };
-    if(image !== null && category !=="" && model!==""){
-      console.log("good")
+    if (image !== null && category !== "" && model !== "") {
       await addCar(body);
     }
-    console.log("Bad")
     document.getElementById("create-course-form").reset();
     this.setState({ model: "", category: "", image: null });
-    await this.props.fetchCars();
-    console.log(this.props.cars);
+    await fetchCars();
   };
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
@@ -60,17 +53,15 @@ class AdminPage extends Component {
     console.log(this.state.image);
   };
 
-  onChangeUser(event) {
-    
-    console.log(event.target.value);
+  onChangeUser({ target }) {
+    console.log(target.value);
   }
-  deleteDriver =async (carId)=> {
-    const{deleteCar, fetchCars} = this.props
+  deleteDriver = async (carId) => {
+    const { deleteCar, fetchCars } = this.props;
 
     await deleteCar(carId);
     await fetchCars();
-    
-  }
+  };
   render() {
     const { cars, categories } = this.props;
     console.log(cars);
@@ -100,7 +91,7 @@ class AdminPage extends Component {
             <div class="container-fluid py-2">
               <h1>Add Car</h1>
               <div className="row add-car">
-                <form onSubmit={this.handleSubmit} id="create-course-form" >
+                <form onSubmit={this.handleSubmit} id="create-course-form">
                   <div className="form-group">
                     <label>Model</label>
                     <input
@@ -109,7 +100,7 @@ class AdminPage extends Component {
                       className="form-control"
                       placeholder="model"
                       onChange={this.handleChange}
-                      value = {this.state.model}
+                      value={this.state.model}
                     />
                   </div>
                   <div className="form-group">

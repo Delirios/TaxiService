@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import CardItem from "../../components/card-item/CardItem";
-
 import { fetchCategories, fetchCars } from "../../redux/actions/catalog";
 
+import CardItem from "../../components/card-item/CardItem";
 import WithTaxiService from "../../components/hoc-helpers/WithTaxiService";
 import compose from "../../../services/utils/compose";
 
@@ -12,8 +11,8 @@ import "./PricingPage.css";
 
 class PricingPage extends Component {
   componentDidMount = async () => {
-    await this.props.fetchCategories();
-    console.log(this.props.categories);
+    const { fetchCategories } = this.props;
+    await fetchCategories();
   };
 
   render() {
@@ -25,7 +24,11 @@ class PricingPage extends Component {
             {categories?.map((cardItem) => {
               return (
                 <div key={cardItem.categoryId}>
-                  <CardItem cardItemName={cardItem.name} cardItemImageName ={cardItem.imageName} cardItemValues = {cardItem.price}></CardItem>
+                  <CardItem
+                    cardItemName={cardItem.name}
+                    cardItemImageName={cardItem.imageName}
+                    cardItemValues={cardItem.price}
+                  ></CardItem>
                 </div>
               );
             })}

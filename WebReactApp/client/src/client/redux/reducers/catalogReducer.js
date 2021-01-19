@@ -24,7 +24,6 @@ const catalogReducer = (state = initialState, action) => {
       };
 
     case "FETCH_CARS_SUCCESS":
-      console.log(action.payload);
       return {
         ...state,
         cars: action.payload,
@@ -33,7 +32,6 @@ const catalogReducer = (state = initialState, action) => {
     case "ADD_CAR":
       return {
         ...state,
-        //cars: action.payload,
       };
 
     case "DELETE_CAR":

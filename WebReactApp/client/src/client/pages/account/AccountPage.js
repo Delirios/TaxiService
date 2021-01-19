@@ -1,13 +1,13 @@
-import "./AccountPage.css";
-
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import Table from "react-bootstrap/Table";
 
+import { fetchOrders } from "../../redux/actions/order";
+import Table from "react-bootstrap/Table";
 import WithTaxiService from "../../components/hoc-helpers/WithTaxiService";
 import compose from "../../../services/utils/compose";
-import { fetchOrders } from "../../redux/actions/order";
+
+import "./AccountPage.css";
 
 class AccountPage extends Component {
   componentDidMount = async () => {
@@ -33,8 +33,6 @@ class AccountPage extends Component {
           </thead>
           <tbody>
             {orders?.map((order) => {
-              console.log(order);
-
               const {
                 orderId,
                 destinationAddresses,

@@ -1,13 +1,13 @@
 const initialState = {
   orderStatus: "",
-  orders : []
+  orders: [],
 };
 
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ORDER_REQUEST":
       return {
-        ...state
+        ...state,
       };
 
     case "CREATE_ORDER_SUCCESS":
