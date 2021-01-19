@@ -1,4 +1,4 @@
-import { history } from '../../../services/utils/history';
+import { history } from "../../../services/utils/history";
 
 const requestLogin = (request) => {
   return {
@@ -7,50 +7,47 @@ const requestLogin = (request) => {
   };
 };
 const successLogin = (request) => {
-  console.log(request)
-  return { 
+  return {
     type: "USERS_LOGIN_SUCCESS",
     payload: request,
   };
 };
 const successLogout = () => {
   return {
-    type: "USERS_LOGOUT"
+    type: "USERS_LOGOUT",
   };
 };
 
 const requestRegister = () => {
   return {
-    type: "USERS_REGISTER_REQUEST"
+    type: "USERS_REGISTER_REQUEST",
   };
 };
 const successRegister = (request) => {
-  console.log(request)
-  return { 
+  console.log(request);
+  return {
     type: "USERS_REGISTER_SUCCESS",
     payload: request,
   };
 };
 
 const login = (taxiService, values) => () => async (dispatch) => {
-  const {username} = values
+  const { username } = values;
   dispatch(requestLogin(username));
   let user = await taxiService.login(values);
-    console.log(user)
-    dispatch(successLogin(user));
-    history.push("/");
+  dispatch(successLogin(user));
+  history.push("/");
 };
 
-const register=(taxiService, values)=>()=> async (dispatch) =>{
+const register = (taxiService, values) => () => async (dispatch) => {
   dispatch(requestRegister());
-  const result  =await taxiService.register(values);
-  console.log(result)
+  const result = await taxiService.register(values);
   dispatch(successRegister(result));
-  return result
-}
-const logout=(taxiService) =>() => (dispatch) =>{
+  return result;
+};
+const logout = (taxiService) => () => (dispatch) => {
   dispatch(successLogout());
-    taxiService.logout();
-}
+  taxiService.logout();
+};
 
-export { login ,logout,register};
+export { login, logout, register };

@@ -11,9 +11,10 @@ const newsRequested = () => {
   };
 };
 
-const fetchNews = (taxiService) => () => (dispatch) => {
+const fetchNews = (taxiService) => () => async (dispatch) => {
   dispatch(newsRequested());
-  taxiService.getNews().then((data) => dispatch(newsLoaded(data)));
+  const news = await taxiService.getNews();
+  dispatch(newsLoaded(news));
 };
 
 export { fetchNews };

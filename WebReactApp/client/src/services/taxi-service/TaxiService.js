@@ -1,30 +1,29 @@
-import { history } from '../utils/history'
+import { history } from "../utils/history";
 
 export default class TaxiService {
   _apiBase = "http://34.105.135.203/gateway";
   //_apiBase = "http://localhost:55360/gateway";
 
   getResource = async (url) => {
-    const res = await fetch(`${this._apiBase}${url}`);
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url} , received ${res.status}`);
+    const responce = await fetch(`${this._apiBase}${url}`);
+    if (!responce.ok) {
+      throw new Error(`Could not fetch ${url} , received ${responce.status}`);
     }
-    return  res;
+    return responce;
   };
-  getAuthorizeResource = async (url,config) => {
-    console.log(config)
-    const res = await fetch(`${this._apiBase}${url}`,config);
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url} , received ${res.status}`);
+  getAuthorizeResource = async (url, config) => {
+    console.log(config);
+    const responce = await fetch(`${this._apiBase}${url}`, config);
+    if (!responce.ok) {
+      throw new Error(`Could not fetch ${url} , received ${responce.status}`);
     }
-    return res;
+    return responce;
   };
 
   createMethod = async (url, config) => {
     console.log(config);
-    const response = await fetch(`${this._apiBase}${url}`,config);
-console.log(response)
-    //const result = await response.json();
+    const response = await fetch(`${this._apiBase}${url}`, config);
+    console.log(response);
 
     return response;
   };
@@ -32,7 +31,6 @@ console.log(response)
     const { destinationAddresses, originAddresses, distance, price } = newOrder;
     console.log(newOrder);
     const { userId, token } = user;
-    console.log(userId, token);
     const body = {
       userId,
       originAddresses,
@@ -74,18 +72,17 @@ console.log(response)
   };
   deleteCar = async (carId) => {
     const car = {
-      carId
-    }
+      carId,
+    };
 
     const config = {
-      method: "POST", 
+      method: "POST",
       headers: {
-      "Content-Type": "application/json"
-    },
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(car),
     };
-    console.log(config)
-    const response = await this.createMethod(`/Car/Delete`, config);
+    console.log(config);
   };
 
   getNews = async () => {
@@ -94,18 +91,20 @@ console.log(response)
     return news;
   };
   getOrders = async (user) => {
-    console.log(user)
-    const {token, userId } = user;
-    console.log(token)
+    console.log(user);
+    const { token, userId } = user;
     const config = {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-      }
+      },
     };
 
-    const response = await this.getAuthorizeResource(`/order/${userId}`,config);
+    const response = await this.getAuthorizeResource(
+      `/order/${userId}`,
+      config
+    );
 
     const orders = await response.json();
     return orders;
@@ -125,7 +124,7 @@ console.log(response)
   };
 
   register = async (user) => {
-    console.log(user)
+    console.log(user);
     const config = {
       method: "POST",
       headers: {
@@ -134,13 +133,11 @@ console.log(response)
       body: JSON.stringify(user),
     };
     const responce = await this.createMethod(`/login/register`, config);
-    console.log(responce)
-    if(responce.ok){    
-      console.log("true")
+    console.log(responce);
+    if (responce.ok) {
       history.push("/login");
       return "OK";
     }
-    console.log("false")
     return "Username already taken";
   };
 

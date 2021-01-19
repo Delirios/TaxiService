@@ -1,6 +1,3 @@
-import { history } from "../../../services/utils/history";
-import React from "react";
-
 const orderRequested = () => {
   return {
     type: "ORDER_REQUEST",
@@ -13,7 +10,6 @@ const orderFailed = (request) => {
   };
 };
 const orderCreated = (request) => {
-  console.log(request)
   return {
     type: "CREATE_ORDER_SUCCESS",
     payload: request,
@@ -27,14 +23,12 @@ const orderLoaded = (requst) => {
   };
 };
 
-const fetchOrders = (taxiService,user) => () => async(dispatch)=> {
+const fetchOrders = (taxiService, user) => () => async (dispatch) => {
   dispatch(orderRequested());
-  console.log(user)
+  console.log(user);
   let orders = await taxiService.getOrders(user);
-  console.log(orders)
   dispatch(orderLoaded(orders));
 };
-
 
 const createOrders = (taxiService, newOrder, user) => () => async (
   dispatch
@@ -42,7 +36,6 @@ const createOrders = (taxiService, newOrder, user) => () => async (
   dispatch(orderRequested());
   let responce = await taxiService.createOrder(newOrder, user);
   dispatch(orderCreated(responce));
-  //history.push("/");
 };
 
-export { createOrders,fetchOrders };
+export { createOrders, fetchOrders };
