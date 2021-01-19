@@ -10,25 +10,20 @@ class Autocomplete extends React.Component {
     this.state = { address: "" };
   }
 
-  
   handleSelect = async (address) => {
     const latLng = await geocodeByAddress(address).then((results) =>
       getLatLng(results[0])
     );
-    
-    const {getDataToPage , name} = this.props
-    getDataToPage(latLng, name)
 
+    const { getDataToPage, name } = this.props;
+    getDataToPage(latLng, name);
 
     this.handleChange(address);
   };
 
-
   handleChange = (address) => {
-      console.log("setState")
     this.setState({ address });
   };
-
 
   render() {
     return (
@@ -37,11 +32,17 @@ class Autocomplete extends React.Component {
         onChange={this.handleChange}
         onSelect={this.handleSelect}
       >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading , name }) => (
+        {({
+          getInputProps,
+          suggestions,
+          getSuggestionItemProps,
+          loading,
+          name,
+        }) => (
           <div>
             <input
               {...getInputProps({
-                name: {name},
+                name: { name },
                 placeholder: "Search Places ...",
                 className: "location-search-input form-control",
               })}
@@ -52,15 +53,15 @@ class Autocomplete extends React.Component {
                 const className = suggestion.active
                   ? "suggestion-item--active"
                   : "suggestion-item";
-                // inline style for demonstration purpose
                 const style = suggestion.active
                   ? { backgroundColor: "#fafafa", cursor: "pointer" }
                   : { backgroundColor: "#ffffff", cursor: "pointer" };
                 return (
-                  <div key={suggestion.placeId}
+                  <div
+                    key={suggestion.placeId}
                     {...getSuggestionItemProps(suggestion, {
                       className,
-                      style
+                      style,
                     })}
                   >
                     <span>{suggestion.description}</span>

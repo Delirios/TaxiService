@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import NewsItem from "../news-item/NewsItem";
 import { connect } from "react-redux";
-import WithTaxiService from "../hoc-helpers/WithTaxiService";
 import { fetchNews } from "../../redux/actions/news";
-import compose from "../../../services/utils/compose";
 import { Spinner } from "react-bootstrap";
 import { bindActionCreators } from "redux";
 
+import WithTaxiService from "../hoc-helpers/WithTaxiService";
+import compose from "../../../services/utils/compose";
+import NewsItem from "../news-item/NewsItem";
+
 const News = ({ news }) => {
-  console.log(news);
   return (
     <div className="list-group">
       {news?.map((newsItem) => {
@@ -23,9 +23,10 @@ const News = ({ news }) => {
 };
 
 class NewsContainer extends Component {
-  componentDidMount() {
-    this.props.fetchNews();
-  }
+  componentDidMount = async () => {
+    const { fetchNews } = this.props;
+    await fetchNews();
+  };
 
   render() {
     const { news, loading } = this.props;
@@ -42,11 +43,15 @@ const mapStateToProps = ({ newsReducer: { news, loading } }) => {
 };
 
 const mapDispatchToProps = (dispatch, { taxiService }) => {
-  return bindActionCreators({
-    fetchNews: fetchNews(taxiService),
-  },dispatch);
+  return bindActionCreators(
+    {
+      fetchNews: fetchNews(taxiService),
+    },
+    dispatch
+  );
 };
 
 export default compose(
   WithTaxiService(),
-  connect(mapStateToProps, mapDispatchToProps))(NewsContainer);
+  connect(mapStateToProps, mapDispatchToProps)
+)(NewsContainer);

@@ -5,19 +5,15 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { createOrders } from "../../redux/actions/order";
 import { Link } from "react-router-dom";
-import {
-  NotificationContainer,
-  NotificationManager,
-} from "react-notifications";
-
-import "../../../../node_modules/react-notifications/lib/notifications.css";
-
+import { NotificationContainer } from "react-notifications";
 import { fetchCategories } from "../../redux/actions/catalog";
-import CategoryItem from "../../components/category-item/CategoryItem";
 
+import CategoryItem from "../../components/category-item/CategoryItem";
 import WithTaxiService from "../hoc-helpers/WithTaxiService";
 import compose from "../../../services/utils/compose";
+import Notification from "../notification/Notification";
 
+import "../../../../node_modules/react-notifications/lib/notifications.css";
 import "./Order.css";
 
 class Order extends Component {
@@ -35,16 +31,13 @@ class Order extends Component {
     };
   }
   componentDidMount = () => {
-    console.log(this.props);
-    this.props.fetchCategories();
-    console.log(this.props.categories);
-    console.log(this.state.category);
+    const { fetchCategories } = this.props;
+    fetchCategories();
   };
 
   calculatePrice = async (fromCoordinates, toCoordinates) => {
     const service = new google.maps.DistanceMatrixService();
     const { categoryPrice } = this.state;
-    console.log(categoryPrice);
     service.getDistanceMatrix(
       {
         origins: [fromCoordinates],
@@ -55,13 +48,11 @@ class Order extends Component {
         avoidTolls: false,
       },
       (response, status) => {
-        console.log(response);
         if (status === "OK" && response.rows[0].elements[0].status === "OK") {
           console.log((5 * response.rows[0].elements[0].distance.value) / 1000);
           const finalPrice =
             categoryPrice +
             (5 * response.rows[0].elements[0].distance.value) / 1000;
-          console.log(finalPrice);
           const distance = response.rows[0].elements[0].distance.value / 1000;
 
           this.setState({
@@ -78,12 +69,8 @@ class Order extends Component {
   };
 
   getDataToPage = (values, name) => {
-    //console.log(name, values);
     this.setState({ [name]: values });
-    //console.log(this.state);
     const { fromCoordinates, toCoordinates, categoryPrice } = this.state;
-    console.log(this.state);
-    //console.log(fromCoordinates, toCoordinates);
     if (
       fromCoordinates !== null &&
       toCoordinates !== null &&
@@ -93,21 +80,16 @@ class Order extends Component {
     }
   };
   getPrice = (id) => {
-    console.log(id);
-    console.log(this.props.categories);
-    const result = this.props.categories.find(
+    const { categories } = this.props;
+    const result = categories.find(
       (category) => category.categoryId === parseInt(id)
     );
     return result;
   };
   handleChange = ({ target }) => {
-    console.log(target);
     const category = this.getPrice(target.value);
-    console.log(category.price);
     this.setState({ categoryPrice: category.price });
-    console.log(this.state);
     const { fromCoordinates, toCoordinates } = this.state;
-    //console.log(fromCoordinates, toCoordinates);
     if (
       fromCoordinates !== null &&
       toCoordinates !== null &&
@@ -116,30 +98,11 @@ class Order extends Component {
       this.calculatePrice(fromCoordinates, toCoordinates);
     }
   };
-  createNotification = (type) => {
-    return () => {
-      switch (String(type)) {
-        case "OK":
-          NotificationManager.success("Success message", "Title here");
-          break;
-        case "ERROR":
-          NotificationManager.error("Error message", "Click me!", 5000, () => {
-            alert("callback");
-          });
-          break;
-        default:
-          return null;
-      }
-    };
-  };
   handleSubmit = async (event) => {
-    console.log(event)
     event.preventDefault();
     var user = JSON.parse(localStorage.getItem("user"));
     const { createOrders } = this.props;
-    //console.log(user);
     await createOrders(this.state, user);
-    console.log(this.props);
   };
 
   render() {
@@ -150,11 +113,11 @@ class Order extends Component {
         <div className="row container  py-3 px-4">
           <div className="col-6 py-4">
             <form onSubmit={this.handleSubmit}>
-              <div class="row">
-                <div class="col">
+              <div className="row">
+                <div className="col">
                   <h1 className="order-color">Price = {price} ГРН</h1>
                 </div>
-                <div class="col">
+                <div className="col">
                   <h1 className="order-color">Distance = {distance} КМ</h1>
                 </div>
               </div>
@@ -182,17 +145,17 @@ class Order extends Component {
                   <CategoryItem categories={categories} />
                 </select>
               </div>
-              <div class="form-row">
-                <div class="col">
+              <div className="form-row">
+                <div className="col">
                   <Link to="/home" className="btn btn-primary ">
                     Відмінити
                   </Link>
                 </div>
-                <div class="col">
+                <div className="col">
                   <button
                     type="submit"
                     className="btn btn-primary"
-                    onClick={this.createNotification(this.props.orderStatus)}
+                    onClick={Notification(this.props.orderStatus)}
                   >
                     Замовити
                   </button>

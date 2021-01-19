@@ -3,8 +3,8 @@ import { Carousel } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchCategories } from "../../redux/actions/catalog";
-
 import { Link } from "react-router-dom";
+
 import compose from "../../../services/utils/compose";
 import WithTaxiService from "../hoc-helpers/WithTaxiService";
 
@@ -20,15 +20,12 @@ const CustomCarousel = ({ items }) => {
 
 class CarouselComponent extends Component {
   componentDidMount = async () => {
-    console.log(this.props);
-    this.props.fetchCategories();
-
-    console.log(this.props);
+    const { fetchCategories } = this.props;
+    await fetchCategories();
   };
 
   render() {
     const { categories } = this.props;
-    console.log(categories);
     const items = categories?.map(({ categoryId, name, price, imageName }) => {
       return (
         <Carousel.Item key={categoryId}>
@@ -40,11 +37,10 @@ class CarouselComponent extends Component {
             height="500"
           />
           <Carousel.Caption>
-          <p>Price = {price}</p>
+            <p>Price = {price}</p>
             <Link to="/admin">
-              <h1 className ="h1-color">{name}</h1>
+              <h1 className="h1-color">{name}</h1>
             </Link>
-            
           </Carousel.Caption>
         </Carousel.Item>
       );

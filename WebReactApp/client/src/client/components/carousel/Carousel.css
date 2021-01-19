@@ -1,11 +1,11 @@
 .carousel {
-    position: sticky;
+  position: sticky;
 }
-.jumbotron{
-    background-color: whitesmoke;
-    padding: 1px;
+.jumbotron {
+  background-color: whitesmoke;
+  padding: 1px;
 }
 
-.h1-color{
-color: red;
+.h1-color {
+  color: red;
 }

@@ -15,9 +15,6 @@ class Login extends Component {
   constructor(props) {
     super(props);
 
-    // reset login status
-    //this.props.dispatch(logout());
-
     this.state = {
       username: "",
       password: "",
@@ -26,13 +23,11 @@ class Login extends Component {
   }
 
   onSubmit(values) {
-    //console.log(values);
-    const { username, password } = values;    
-    const {login} = this.props
+    const { username, password } = values;
+    const { login } = this.props;
 
     this.setState({ username: username, password: password, submitted: true });
 
-    //console.log(username, password)
     if (username && password) {
       login(values);
     }
@@ -42,59 +37,59 @@ class Login extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div  className="login-background">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <form
-              className="box"
-              onSubmit={handleSubmit(this.onSubmit.bind(this))}
-            >
-              <h1>Login</h1>
-              <p className="text-muted">
-                Please enter your login and password!
-              </p>
-              <Field
-                placeholder="Username"
-                type="text"
-                name="username"
-                label="Login"
-                component={renderField}
-              />
-              <Field
-                placeholder="Password"
-                type="password"
-                name="password"
-                label="Password"
-                component={renderField}
-              />
-              <Link className="forgot text-muted" to="/ForgotPassword">
-                Forgot password?
-              </Link>
-              <input type="submit" name="" value="Login" href="#" />
-              <div className="col-md-12">
-                <ul className="social-network social-circle">
-                  <li>
-                    <Link to="#" className="icoFacebook" title="Facebook">
-                      <i className="fa fa-facebook-f"></i>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="#" className="icoTwitter" title="Twitter">
-                      <i className="fa fa-twitter"></i>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="#" className="icoGoogle" title="Google +">
-                      <i className="fa fa-google-plus"></i>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </form>
+      <div className="login-background">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <form
+                className="box"
+                onSubmit={handleSubmit(this.onSubmit.bind(this))}
+              >
+                <h1>Login</h1>
+                <p className="text-muted">
+                  Please enter your login and password!
+                </p>
+                <Field
+                  placeholder="Username"
+                  type="text"
+                  name="username"
+                  label="Login"
+                  component={renderField}
+                />
+                <Field
+                  placeholder="Password"
+                  type="password"
+                  name="password"
+                  label="Password"
+                  component={renderField}
+                />
+                <Link className="forgot text-muted" to="/ForgotPassword">
+                  Forgot password?
+                </Link>
+                <input type="submit" name="" value="Login" href="#" />
+                <div className="col-md-12">
+                  <ul className="social-network social-circle">
+                    <li>
+                      <Link to="#" className="icoFacebook" title="Facebook">
+                        <i className="fa fa-facebook-f"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="#" className="icoTwitter" title="Twitter">
+                        <i className="fa fa-twitter"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="#" className="icoGoogle" title="Google +">
+                        <i className="fa fa-google-plus"></i>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     );
   }

@@ -1,6 +1,5 @@
-import React, { Component , Fragment} from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { logout } from "../../redux/actions/user";
@@ -11,16 +10,12 @@ import compose from "../../../services/utils/compose";
 class Header extends Component {
   onClick = () => {
     const { logout } = this.props;
-    console.log("user");
     logout();
   };
 
   renderLogin = () => {
     const { loggedIn } = this.props;
-    console.log(this.props);
     if (!loggedIn) {
-      console.log(this.props);
-      console.log("user null");
       return (
         <li className="nav-item">
           <Link to="/login" className="nav-link">
@@ -30,8 +25,6 @@ class Header extends Component {
       );
     }
     if (loggedIn) {
-      console.log("user not null");
-      console.log(this.props.user);
       if (this.props.user.role === "Admin") {
         return (
           <Fragment>

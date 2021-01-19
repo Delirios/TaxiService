@@ -2,7 +2,7 @@
   bottom: 0;
   width: 100%;
   white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+  line-height: 60px;
   overflow-x: hidden;
 }
 

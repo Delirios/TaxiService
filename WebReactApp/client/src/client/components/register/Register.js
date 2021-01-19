@@ -1,12 +1,11 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import { reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { register } from "../../redux/actions/user";
 import { NotificationContainer } from "react-notifications";
-import Notification from "../notification/Notification";
 
+import Notification from "../notification/Notification";
 import WithTaxiService from "../hoc-helpers/WithTaxiService";
 import compose from "../../../services/utils/compose";
 
@@ -31,7 +30,14 @@ class Register extends Component {
   }
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { firstName, lastName, username, password } = this.state;
+    const {
+      firstName,
+      lastName,
+      username,
+      password,
+      notification,
+    } = this.state;
+    const { register } = this.props;
     const values = {
       firstName,
       lastName,
@@ -39,11 +45,11 @@ class Register extends Component {
       password,
     };
 
-    const result = await this.props.register(values);
+    const result = await register(values);
 
     this.setState({ notification: result });
 
-    await Notification(this.state.notification);
+    await Notification(notification);
   };
 
   render() {
