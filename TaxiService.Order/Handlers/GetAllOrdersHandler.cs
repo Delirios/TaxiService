@@ -18,7 +18,6 @@ namespace TaxiService.Order.Handlers
             _orderRepository = orderRepository;
         }
 
-
         public async Task<IEnumerable<Reservation>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
         {
             return await _orderRepository.GetAllOrders();

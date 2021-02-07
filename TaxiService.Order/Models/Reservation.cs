@@ -7,7 +7,6 @@ namespace TaxiService.Order.Models
     {
         [Key]
         public int OrderId {get;set;}
-
         public string UserId { get; set; }
         public string OriginAddresses { get;set;}
         public string DestinationAddresses { get;set;}

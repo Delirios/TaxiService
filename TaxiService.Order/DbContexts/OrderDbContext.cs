@@ -7,7 +7,6 @@ namespace TaxiService.Order.DbContexts
     {
         public OrderDbContext(DbContextOptions<OrderDbContext> options) : base(options)
         {
-
         }
         public DbSet<Reservation> Reservations { get; set; }
     }

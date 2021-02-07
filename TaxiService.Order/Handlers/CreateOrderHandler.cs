@@ -1,8 +1,5 @@
 ﻿using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TaxiService.Order.Commands;
@@ -22,7 +19,6 @@ namespace TaxiService.Order.Handlers
 
         public async Task<Reservation> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-
             var order = await _orderRepository.CreateOrder(new Reservation
             {
                 UserId = request.UserId,
@@ -31,8 +27,8 @@ namespace TaxiService.Order.Handlers
                 Price = request.Price,
                 Distance = request.Distance,
                 DateTime = DateTime.Now
-
             });
+
             return order;
         }
     }

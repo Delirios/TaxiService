@@ -17,7 +17,6 @@ namespace TaxiService.Order.Repositories
             _orderDbContext = orderDbContext;
         }
 
-
         public async Task<IEnumerable<Reservation>> GetAllOrders()
         {
             return await _orderDbContext.Reservations.ToListAsync();
@@ -44,8 +43,10 @@ namespace TaxiService.Order.Repositories
                 Distance = order.Distance,
                 DateTime = DateTime.Now
             };
+
             _orderDbContext.Reservations.Add(reservation);
             await _orderDbContext.SaveChangesAsync();
+
             return await Task.FromResult(reservation);
         }
     }
