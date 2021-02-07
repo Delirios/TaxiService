@@ -13,47 +13,6 @@ namespace TaxiService.Discount.DbContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-
-            modelBuilder.Entity<Coupon>().HasData(new Coupon
-            {
-                CouponId = 1,
-                Code = "First",
-                Amount = 100,
-                AlreadyUsed = false
-            });
-
-            modelBuilder.Entity<Coupon>().HasData(new Coupon
-            {
-                CouponId = 2,
-                Code = "Second",
-                Amount = 200,
-                AlreadyUsed = false
-            });
-
-            modelBuilder.Entity<Coupon>().HasData(new Coupon
-            {
-                CouponId = 3,
-                Code = "Third",
-                Amount = 300,
-                AlreadyUsed = false
-            });
-
-            modelBuilder.Entity<Coupon>().HasData(new Coupon
-            {
-                CouponId = 4,
-                Code = "Fourth",
-                Amount = 400,
-                AlreadyUsed = false
-            });
-
-            modelBuilder.Entity<Coupon>().HasData(new Coupon
-            {
-                CouponId = 5,
-                Code = "Fifth",
-                Amount = 500,
-                AlreadyUsed = false
-            });
         }
     }
 }
