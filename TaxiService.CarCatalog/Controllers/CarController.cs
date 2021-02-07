@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http.Headers;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TaxiService.CarCatalog.DTO;
@@ -46,21 +43,6 @@ namespace TaxiService.CarCatalog.Controllers
             await _carRepository.AddCar(carDTO);
 
             return carDTO;
-
-
-
-
-            //var filesPath = Directory.GetCurrentDirectory();
-            //if (car.Image.Length > 0)
-            //{
-            //    var fileName = Path.GetFileName(car.Image.FileName);
-            //    var filePath = Path.Combine(filesPath, fileName);
-
-            //    using (var stream = System.IO.File.Create(filePath))
-            //    {
-            //        await car.Image.CopyToAsync(stream);
-            //    }
-            //}
         }
     }
 }
