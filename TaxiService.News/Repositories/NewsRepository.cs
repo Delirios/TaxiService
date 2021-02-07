@@ -25,7 +25,9 @@ namespace TaxiService.News.Repositories
             {
                 Regex rx = new Regex(@"(http)?s?:?(\/\/[^""']*\.(?:png|jpg|jpeg|gif|png|svg))");
                 var ImageName = rx.Match(item.Description).Value;
+
                 Article article = new Article();
+
                 article.ArticleId = Guid.NewGuid();
                 article.ImageName = ImageName;
                 article.Title = item.Title;
